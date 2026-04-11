@@ -7,7 +7,7 @@
     "status": "Available",
     "provider": { "name": "dr. Andi Wijaya", "hosp": "RS PCR Medika", "exp": "5 Thn" },
     "detail": { "day": "Senin", "time": "09:00", "room": "V-01" },
-    "meta": { "rate": 4.8, "img": "https://images.unsplash.com/photo-1505751172107-573967a4f32a?w=400" }
+    "meta": { "rate": 4.8, "img": "/images_p4/dokter-umum.jpg" }
   },
   {
     "id": "SRV-002",
@@ -17,7 +17,7 @@
     "status": "Available",
     "provider": { "name": "Lab Klinik Utama", "hosp": "Gedung A PCR", "exp": "10 Thn" },
     "detail": { "day": "Harian", "time": "07:00", "room": "L-12" },
-    "meta": { "rate": 4.5, "img": "https://images.unsplash.com/photo-1579152276506-2d820808b59a?w=400" }
+    "meta": { "rate": 4.5, "img": "/images_p4/cek-kolestrol.jpg" }
   },
   {
     "id": "SRV-003",
@@ -27,7 +27,7 @@
     "status": "Available",
     "provider": { "name": "dr. Sarah Anisa", "hosp": "Klinik Pratama", "exp": "3 Thn" },
     "detail": { "day": "Sabtu", "time": "08:00", "room": "R-Vaksin" },
-    "meta": { "rate": 4.9, "img": "https://images.unsplash.com/photo-1632833230661-5fc81ad6b60e?w=400" }
+    "meta": { "rate": 4.9, "img": "/images_p4/vaksin-influ.jpg" }
   },
   {
     "id": "SRV-004",
@@ -37,7 +37,7 @@
     "status": "Limited",
     "provider": { "name": "Budi S.Ft", "hosp": "Sport Center", "exp": "7 Thn" },
     "detail": { "day": "Selasa", "time": "14:00", "room": "Gym-A" },
-    "meta": { "rate": 5.0, "img": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400" }
+    "meta": { "rate": 5.0, "img": "/images_p4/fisio-otot.jpg" }
   },
   {
     "id": "SRV-005",
@@ -47,7 +47,7 @@
     "status": "Non-Available",
     "provider": { "name": "Maya M.Psi", "hosp": "Mind Garden", "exp": "6 Thn" },
     "detail": { "day": "Rabu", "time": "19:00", "room": "Zoom-02" },
-    "meta": { "rate": 4.9, "img": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400" }
+    "meta": { "rate": 4.9, "img": "/images_p4/psikolog.jpg" }
   },
   {
     "id": "SRV-006",
@@ -57,7 +57,7 @@
     "status": "Available",
     "provider": { "name": "Ns. Shinta", "hosp": "HomeCare ID", "exp": "4 Thn" },
     "detail": { "day": "Harian", "time": "08:00", "room": "Visit" },
-    "meta": { "rate": 4.9, "img": "https://images.unsplash.com/photo-1581578731522-aa02d8b8a514?w=400" }
+    "meta": { "rate": 4.9, "img": "/images_p4/homecare.jpg" }
   },
   {
     "id": "SRV-007",
@@ -67,7 +67,7 @@
     "status": "Available",
     "provider": { "name": "dr. Lilis Sp.A", "hosp": "RSIA Kasih", "exp": "15 Thn" },
     "detail": { "day": "Jumat", "time": "16:00", "room": "V-03" },
-    "meta": { "rate": 5.0, "img": "https://images.unsplash.com/photo-1584362946141-9877b102944b?w=400" }
+    "meta": { "rate": 5.0, "img": "/images_p4/dokter-anak.jpg" }
   },
   {
     "id": "SRV-008",
@@ -77,7 +77,7 @@
     "status": "Non-Available",
     "provider": { "name": "dr. Hidayat", "hosp": "Klinik Ibu", "exp": "12 Thn" },
     "detail": { "day": "Sabtu", "time": "10:00", "room": "Poli-1" },
-    "meta": { "rate": 4.8, "img": "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=400" }
+    "meta": { "rate": 4.8, "img": "/images_p4/usg-4d.jpg" }
   },
   {
     "id": "SRV-009",
@@ -87,7 +87,7 @@
     "status": "Available",
     "provider": { "name": "Dinkes Riau", "hosp": "Puskesmas", "exp": "1 Thn" },
     "detail": { "day": "Harian", "time": "08:00", "room": "Aula" },
-    "meta": { "rate": 4.2, "img": "https://images.unsplash.com/photo-1618961734760-466979ce35b0?w=400" }
+    "meta": { "rate": 4.2, "img": "/images_p4/vaksin-covid.jpg" }
   },
   {
     "id": "SRV-010",
@@ -97,7 +97,7 @@
     "status": "Limited",
     "provider": { "name": "Ahmad S.Tr", "hosp": "Rehab Medik", "exp": "5 Thn" },
     "detail": { "day": "Kamis", "time": "13:00", "room": "R-Terapi" },
-    "meta": { "rate": 4.7, "img": "https://images.unsplash.com/photo-1590233641178-40844bb67053?w=400" }
+    "meta": { "rate": 4.7, "img": "/images_p4/terapi-wicara.jpg" }
   },
   {
     "id": "SRV-011",
@@ -107,7 +107,7 @@
     "status": "Available",
     "provider": { "name": "Rina S.Gz", "hosp": "NutriLife", "exp": "4 Thn" },
     "detail": { "day": "Selasa", "time": "15:00", "room": "Chat" },
-    "meta": { "rate": 4.6, "img": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400" }
+    "meta": { "rate": 4.6, "img": "/images_p4/ahli-gizi.jpg" }
   },
   {
     "id": "SRV-012",
@@ -117,7 +117,7 @@
     "status": "Available",
     "provider": { "name": "Radiologi Dept", "hosp": "RS Medika", "exp": "20 Thn" },
     "detail": { "day": "Harian", "time": "08:00", "room": "Rad-1" },
-    "meta": { "rate": 4.4, "img": "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=400" }
+    "meta": { "rate": 4.4, "img": "/images_p4/rontgen.jpg" }
   },
   {
     "id": "SRV-013",
@@ -127,7 +127,7 @@
     "status": "Available",
     "provider": { "name": "drg. Anton", "hosp": "Dental Care", "exp": "8 Thn" },
     "detail": { "day": "Sabtu", "time": "17:00", "room": "Video" },
-    "meta": { "rate": 4.7, "img": "https://images.unsplash.com/photo-1551076805-e1869033e561?w=400" }
+    "meta": { "rate": 4.7, "img": "/images_p4/dokter-gigi.jpg" }
   },
   {
     "id": "SRV-014",
@@ -137,7 +137,7 @@
     "status": "Limited",
     "provider": { "name": "Tim Dokter", "hosp": "RS Utama", "exp": "25 Thn" },
     "detail": { "day": "Senin", "time": "07:00", "room": "VIP-Room" },
-    "meta": { "rate": 5.0, "img": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400" }
+    "meta": { "rate": 5.0, "img": "/images_p4/mcu-vip.jpg" }
   },
   {
     "id": "SRV-015",
@@ -147,7 +147,7 @@
     "status": "Available",
     "provider": { "name": "KKP Riau", "hosp": "Kantor Kes", "exp": "10 Thn" },
     "detail": { "day": "Senin", "time": "09:00", "room": "Klinik" },
-    "meta": { "rate": 4.6, "img": "https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?w=400" }
+    "meta": { "rate": 4.6, "img": "/images_p4/vaksin-meningitis.jpg" }
   },
   {
     "id": "SRV-016",
@@ -157,7 +157,7 @@
     "status": "Available",
     "provider": { "name": "dr. Cindy Sp.KK", "hosp": "Skin Center", "exp": "9 Thn" },
     "detail": { "day": "Jumat", "time": "10:00", "room": "V-05" },
-    "meta": { "rate": 4.9, "img": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=400" }
+    "meta": { "rate": 4.9, "img": "/images_p4/dokter-kulit.jpg" }
   },
   {
     "id": "SRV-017",
@@ -167,7 +167,7 @@
     "status": "Limited",
     "provider": { "name": "Dian M.Psi", "hosp": "Mind Garden", "exp": "5 Thn" },
     "detail": { "day": "Kamis", "time": "14:00", "room": "R-02" },
-    "meta": { "rate": 4.8, "img": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400" }
+    "meta": { "rate": 4.8, "img": "/images_p4/psikoterapi-anak.jpg" }
   },
   {
     "id": "SRV-018",
@@ -177,7 +177,7 @@
     "status": "Available",
     "provider": { "name": "Apoteker", "hosp": "Apotek PCR", "exp": "2 Thn" },
     "detail": { "day": "Harian", "time": "08:00", "room": "Front" },
-    "meta": { "rate": 4.5, "img": "https://images.unsplash.com/photo-1584362946141-9877b102944b?w=400" }
+    "meta": { "rate": 4.5, "img": "/images_p4/cek-gula.jpg" }
   },
   {
     "id": "SRV-019",
@@ -187,7 +187,7 @@
     "status": "Available",
     "provider": { "name": "dr. Kevin Sp.S", "hosp": "Neuro Center", "exp": "14 Thn" },
     "detail": { "day": "Rabu", "time": "11:00", "room": "V-09" },
-    "meta": { "rate": 4.9, "img": "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400" }
+    "meta": { "rate": 4.9, "img": "/images_p4/dokter-saraf.jpg" }
   },
   {
     "id": "SRV-020",
@@ -197,6 +197,6 @@
     "status": "Available",
     "provider": { "name": "Yandi S.Ft", "hosp": "PhysioHome", "exp": "11 Thn" },
     "detail": { "day": "Flexible", "time": "09:00", "room": "Home" },
-    "meta": { "rate": 4.9, "img": "https://images.unsplash.com/photo-1576765608598-0c6bd7e99827?w=400" }
+    "meta": { "rate": 4.9, "img": "/images_p4/fisio-stroke.jpg" }
   }
 ]

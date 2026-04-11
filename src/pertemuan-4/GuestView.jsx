@@ -2,132 +2,152 @@ import React, { useState } from 'react';
 import servicesData from './services.json';
 
 export default function GuestView() {
-  const [search, setSearch] = useState('');
-  const [filterCat, setFilterCat] = useState('All'); // Filter 1: Kategori
-  const [filterStat, setFilterStat] = useState('All'); // Filter 2: Status
+  /* --- 1. Inisialisasi State Best Practice --- */
+  const [dataForm, setDataForm] = useState({
+    searchTerm: "",
+    selectedCat: "All",
+    selectedStat: "All"
+  });
 
-  // Logika Filter & Search
-  const filtered = (servicesData || []).filter(i => {
-    const matchesSearch = i.service_name.toLowerCase().includes(search.toLowerCase());
-    const matchesCat = filterCat === 'All' || i.category === filterCat;
-    const matchesStat = filterStat === 'All' || i.status === filterStat;
+  /* --- 2. Handle Change General --- */
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    });
+  };
+
+  /* --- 3. Filtering Logic --- */
+  const filtered = (servicesData || []).filter(item => {
+    const matchesSearch = item.service_name.toLowerCase().includes(dataForm.searchTerm.toLowerCase());
+    const matchesCat = dataForm.selectedCat === 'All' || item.category === dataForm.selectedCat;
+    const matchesStat = dataForm.selectedStat === 'All' || item.status === dataForm.selectedStat;
     return matchesSearch && matchesCat && matchesStat;
   });
 
   return (
-    <div className="bg-slate-50 rounded-3xl p-6 md:p-10 border border-dashed border-slate-300">
-      {/* Header & Deskripsi */}
+    <div className="bg-gradient-to-b from-slate-50 to-slate-100 rounded-[2.5rem] p-6 md:p-10 border border-slate-200/80 shadow-inner">
+      
+      {/* Header */}
       <div className="mb-10 text-center md:text-left">
-        <h2 className="text-2xl font-black text-slate-800 mb-2 flex items-center gap-2 justify-center md:justify-start">
-          <span className="p-2 bg-blue-100 rounded-lg">🏥</span> 
-          Tampilan Guest (Katalog Layanan)
-        </h2>
-        <p className="text-slate-500 text-sm">Temukan layanan kesehatan terbaik untuk kebutuhan Anda.</p>
+        <h2 className="text-3xl font-black text-slate-800 mb-2">Katalog Pasien</h2>
+        <p className="text-slate-500 font-medium">Temukan layanan kesehatan terbaik dari PCR Medika.</p>
       </div>
 
-      {/* Search & Filter Bar - Responsive Grid */}
+      {/* Control Panel */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
-        <div className="md:col-span-2 relative group">
+        <div className="md:col-span-2">
           <input 
+            name="searchTerm"
+            value={dataForm.searchTerm}
             type="text" 
-            placeholder="Mau cari layanan apa hari ini?" 
-            className="w-full pl-5 pr-5 py-4 rounded-2xl border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 shadow-lg shadow-blue-900/5 outline-none transition-all bg-white"
-            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Cari keluhan atau layanan..." 
+            className="w-full px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm font-medium text-slate-700"
+            onChange={handleChange}
           />
         </div>
-
         <select 
-          className="p-4 rounded-2xl border-none ring-1 ring-slate-200 bg-white shadow-sm outline-none font-bold text-slate-600 focus:ring-2 focus:ring-blue-500"
-          onChange={(e) => setFilterCat(e.target.value)}
+          name="selectedCat"
+          value={dataForm.selectedCat}
+          className="px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm font-bold text-slate-600 cursor-pointer"
+          onChange={handleChange}
         >
           <option value="All">Semua Kategori</option>
           <option value="Telemedicine">Telemedicine</option>
           <option value="Diagnostic">Diagnostic</option>
           <option value="Vaccination">Vaccination</option>
           <option value="Therapy">Therapy</option>
+          <option value="HomeCare">HomeCare</option>
         </select>
-
         <select 
-          className="p-4 rounded-2xl border-none ring-1 ring-slate-200 bg-white shadow-sm outline-none font-bold text-slate-600 focus:ring-2 focus:ring-blue-500"
-          onChange={(e) => setFilterStat(e.target.value)}
+          name="selectedStat"
+          value={dataForm.selectedStat}
+          className="px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm font-bold text-slate-600 cursor-pointer"
+          onChange={handleChange}
         >
           <option value="All">Status (Semua)</option>
           <option value="Available">Available</option>
-          <option value="Limited">Limited</option>
           <option value="Non-Available">Non-Available</option>
+          <option value="Limited">Limited</option>
         </select>
       </div>
 
-      {/* Grid Card Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {/* Card Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
         {filtered.length > 0 ? (
           filtered.map((item) => (
-            <div key={item.id} className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col group">
-              {/* Gambar & Badge Status */}
-              <div className="relative h-48 overflow-hidden">
+            <div key={item.id} className="bg-white rounded-[2rem] p-3 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col group">
+              
+              {/* Image Container with Badges */}
+              <div className="relative h-48 overflow-hidden rounded-[1.5rem] mb-4 bg-slate-100">
                 <img 
                   src={item.meta.img} 
                   alt={item.service_name} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500" 
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-out" 
                 />
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-black uppercase shadow-lg backdrop-blur-md ${
-                  item.status === 'Available' ? 'bg-green-500/90 text-white' : 'bg-red-500/90 text-white'
+                
+                {/* Status Badge (Diperbarui untuk 3 warna) */}
+                <div className={`absolute top-3 right-3 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-lg backdrop-blur-md border ${
+                  item.status === 'Available' 
+                    ? 'bg-green-500/90 text-white border-green-400/50' 
+                    : item.status === 'Limited'
+                    ? 'bg-amber-500/90 text-white border-amber-400/50'
+                    : 'bg-red-500/90 text-white border-red-400/50'
                 }`}>
                   {item.status}
                 </div>
-                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-[10px] font-bold text-blue-600">
+                
+                {/* Category Badge */}
+                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-bold text-slate-700 shadow-sm">
                   {item.category}
                 </div>
               </div>
 
-              {/* Konten Card */}
-              <div className="p-6 flex-1 flex flex-col">
-                <div className="flex items-center gap-1 text-yellow-500 mb-2">
-                  <span className="text-xs font-black">⭐ {item.meta.rate}</span>
-                  <span className="text-slate-300 text-[10px]">| Rating Pasien</span>
+              {/* Card Body */}
+              <div className="px-3 pb-3 flex-1 flex flex-col">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <span className="text-xs font-black text-yellow-500">★ {item.meta.rate}</span>
+                  <span className="text-[10px] text-slate-400 font-medium">({item.detail.day}, {item.detail.time})</span>
                 </div>
                 
-                <h3 className="font-black text-slate-800 text-lg mb-2 leading-tight min-h-[3rem] line-clamp-2">
+                <h3 className="font-black text-slate-800 text-[17px] mb-3 leading-snug line-clamp-2 min-h-[3rem]">
                   {item.service_name}
                 </h3>
                 
-                <div className="space-y-1 mb-6">
-                  <p className="text-[11px] text-slate-400 flex items-center gap-1 font-medium">
-                    📍 {item.provider.hosp}
-                  </p>
-                  <p className="text-[11px] text-slate-400 flex items-center gap-1 font-medium">
-                    👨‍⚕️ {item.provider.name}
-                  </p>
-                </div>
+                <p className="text-[12px] text-slate-500 font-medium mb-6 flex-1">
+                  Oleh <span className="text-blue-600 font-bold">{item.provider.name}</span>
+                </p>
 
-                {/* Harga & Tombol */}
-                <div className="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between">
+                {/* Footer Card */}
+                <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                   <div className="flex flex-col">
-                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Mulai dari</span>
-                    <span className="text-blue-700 font-black text-xl">
-                      {item.price === 0 ? "FREE" : `Rp${item.price.toLocaleString('id-ID')}`}
+                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Biaya</span>
+                    <span className="text-slate-800 font-black text-lg">
+                      {item.price === 0 ? "GRATIS" : `Rp${item.price.toLocaleString('id-ID')}`}
                     </span>
                   </div>
                   
+                  {/* Tombol Action */}
                   <button 
                     disabled={item.status !== 'Available'}
-                    className={`p-3 rounded-2xl transition-all shadow-md ${
+                    className={`px-5 py-2.5 rounded-xl font-bold text-xs transition-all ${
                       item.status === 'Available' 
-                      ? 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-blue-200' 
+                      ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-600/30 active:scale-95' 
                       : 'bg-slate-100 text-slate-400 cursor-not-allowed'
                     }`}
                   >
-                    {item.status === 'Available' ? '🚀' : '❌'}
+                    {item.status === 'Available' ? 'Pesan' : 'Penuh'}
                   </button>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <div className="col-span-full py-20 text-center">
-            <div className="text-6xl mb-4 text-slate-200">🔍</div>
-            <h3 className="text-xl font-bold text-slate-400 italic">Duh, layanannya tidak ada...</h3>
-            <p className="text-slate-300">Coba kata kunci lain atau reset filter Anda.</p>
+          <div className="col-span-full py-24 text-center">
+            <span className="text-5xl block mb-4">🩺</span>
+            <h3 className="text-xl font-bold text-slate-600">Layanan tidak ditemukan</h3>
+            <p className="text-slate-400 mt-2">Coba sesuaikan kata kunci pencarian atau filter Anda.</p>
           </div>
         )}
       </div>
