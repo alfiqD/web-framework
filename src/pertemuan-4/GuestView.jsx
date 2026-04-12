@@ -29,7 +29,7 @@ export default function GuestView() {
       {/* 1. Header Responsif */}
       <div className="mb-10 text-center lg:text-left">
         <h2 className="font-black text-slate-800 tracking-tight transition-all 
-          text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-4">
+          text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4">
           Katalog Pasien
         </h2>
         <p className="text-slate-500 font-medium text-sm md:text-lg lg:text-xl">
@@ -79,11 +79,7 @@ export default function GuestView() {
         </div>
       </div>
 
-      {/* 3. Grid Logic (Min 3, Max 5):
-          - grid-cols-3: Minimal 3 kolom (Default/Mobile)
-          - xl:grid-cols-4: Berubah jadi 4 kolom saat layar cukup lebar (~90% zoom)
-          - 2xl:grid-cols-5: Maksimal 5 kolom saat layar sangat lebar (~70% zoom)
-      */}
+      {/* 3. Grid Logic (Min 3, Max 5) */}
       <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-8">
         {filtered.length > 0 ? (
           filtered.map((item) => (
@@ -136,7 +132,7 @@ export default function GuestView() {
                   </div>
                 </div>
 
-                {/* Footer */}
+                {/* Footer & Tombol Pintar */}
                 <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
                   <div className="flex flex-col">
                     <span className="hidden md:block text-[9px] text-slate-400 font-black uppercase">Biaya</span>
@@ -145,10 +141,16 @@ export default function GuestView() {
                     </span>
                   </div>
                   
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 md:px-5 md:py-2.5 rounded-xl transition-all shadow-lg active:scale-95">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
-                    </svg>
+                  {/* LOGIKA TOMBOL DISINI */}
+                  <button 
+                    disabled={item.status !== 'Available'}
+                    className={`px-3 py-2 md:px-5 md:py-2.5 rounded-xl transition-all shadow-lg font-bold text-[10px] md:text-sm ${
+                      item.status === 'Available' 
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white active:scale-95 shadow-blue-500/20' 
+                        : 'bg-slate-200 text-slate-500 cursor-not-allowed shadow-none'
+                    }`}
+                  >
+                    {item.status === 'Available' ? 'Pesan' : 'Penuh'}
                   </button>
                 </div>
               </div>
