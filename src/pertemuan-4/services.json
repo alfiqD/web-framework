@@ -5,9 +5,9 @@
     "category": "Telemedicine",
     "price": 100000,
     "status": "Available",
-    "provider": { "name": "dr. Andi Wijaya", "hosp": "RS PCR Medika", "exp": "5 Thn" },
+    "provider": { "name": "dr. Andi Wijaya", "hospital": "RS PCR Medika", "experience": "5 Years" },
     "detail": { "day": "Senin", "time": "09:00", "room": "V-01" },
-    "meta": { "rate": 4.8, "img": "/images_p4/dokter-umum.jpg" }
+    "meta": { "rating": 4.8, "img": "/images_p4/dokter-umum.jpg", "total_reviews": 120 }
   },
   {
     "id": "SRV-002",
@@ -15,9 +15,9 @@
     "category": "Diagnostic",
     "price": 250000,
     "status": "Available",
-    "provider": { "name": "Lab Klinik Utama", "hosp": "Gedung A PCR", "exp": "10 Thn" },
+    "provider": { "name": "Lab Klinik Utama", "hospital": "Gedung A PCR", "experience": "10 Years" },
     "detail": { "day": "Harian", "time": "07:00", "room": "L-12" },
-    "meta": { "rate": 4.5, "img": "/images_p4/cek-kolestrol.jpg" }
+    "meta": { "rating": 4.5, "img": "/images_p4/cek-kolestrol.jpg", "total_reviews": 85 }
   },
   {
     "id": "SRV-003",
@@ -25,9 +25,9 @@
     "category": "Vaccination",
     "price": 350000,
     "status": "Available",
-    "provider": { "name": "dr. Sarah Anisa", "hosp": "Klinik Pratama", "exp": "3 Thn" },
+    "provider": { "name": "dr. Sarah Anisa", "hospital": "Klinik Pratama", "experience": "3 Years" },
     "detail": { "day": "Sabtu", "time": "08:00", "room": "R-Vaksin" },
-    "meta": { "rate": 4.9, "img": "/images_p4/vaksin-influ.jpg" }
+    "meta": { "rating": 4.9, "img": "/images_p4/vaksin-influ.jpg", "total_reviews": 45 }
   },
   {
     "id": "SRV-004",
@@ -35,9 +35,9 @@
     "category": "Therapy",
     "price": 200000,
     "status": "Limited",
-    "provider": { "name": "Budi S.Ft", "hosp": "Sport Center", "exp": "7 Thn" },
+    "provider": { "name": "Budi S.Ft", "hospital": "Sport Center", "experience": "7 Years" },
     "detail": { "day": "Selasa", "time": "14:00", "room": "Gym-A" },
-    "meta": { "rate": 5.0, "img": "/images_p4/fisio-otot.jpg" }
+    "meta": { "rating": 5.0, "img": "/images_p4/fisio-otot.jpg", "total_reviews": 30 }
   },
   {
     "id": "SRV-005",
@@ -45,9 +45,9 @@
     "category": "Telemedicine",
     "price": 180000,
     "status": "Non-Available",
-    "provider": { "name": "Maya M.Psi", "hosp": "Mind Garden", "exp": "6 Thn" },
+    "provider": { "name": "Maya M.Psi", "hospital": "Mind Garden", "experience": "6 Years" },
     "detail": { "day": "Rabu", "time": "19:00", "room": "Zoom-02" },
-    "meta": { "rate": 4.9, "img": "/images_p4/psikolog.jpg" }
+    "meta": { "rating": 4.9, "img": "/images_p4/psikolog.jpg", "total_reviews": 92 }
   },
   {
     "id": "SRV-006",
@@ -55,9 +55,9 @@
     "category": "HomeCare",
     "price": 500000,
     "status": "Available",
-    "provider": { "name": "Ns. Shinta", "hosp": "HomeCare ID", "exp": "4 Thn" },
+    "provider": { "name": "Ns. Shinta", "hospital": "HomeCare ID", "experience": "4 Years" },
     "detail": { "day": "Harian", "time": "08:00", "room": "Visit" },
-    "meta": { "rate": 4.9, "img": "/images_p4/homecare.jpg" }
+    "meta": { "rating": 4.9, "img": "/images_p4/homecare.jpg", "total_reviews": 15 }
   },
   {
     "id": "SRV-007",
@@ -65,9 +65,9 @@
     "category": "Telemedicine",
     "price": 225000,
     "status": "Available",
-    "provider": { "name": "dr. Lilis Sp.A", "hosp": "RSIA Kasih", "exp": "15 Thn" },
+    "provider": { "name": "dr. Lilis Sp.A", "hospital": "RSIA Kasih", "experience": "15 Years" },
     "detail": { "day": "Jumat", "time": "16:00", "room": "V-03" },
-    "meta": { "rate": 5.0, "img": "/images_p4/dokter-anak.jpg" }
+    "meta": { "rating": 5.0, "img": "/images_p4/dokter-anak.jpg", "total_reviews": 210 }
   },
   {
     "id": "SRV-008",
@@ -75,9 +75,9 @@
     "category": "Diagnostic",
     "price": 400000,
     "status": "Non-Available",
-    "provider": { "name": "dr. Hidayat", "hosp": "Klinik Ibu", "exp": "12 Thn" },
+    "provider": { "name": "dr. Hidayat", "hospital": "Klinik Ibu", "experience": "12 Years" },
     "detail": { "day": "Sabtu", "time": "10:00", "room": "Poli-1" },
-    "meta": { "rate": 4.8, "img": "/images_p4/usg-4d.jpg" }
+    "meta": { "rating": 4.8, "img": "/images_p4/usg-4d.jpg", "total_reviews": 67 }
   },
   {
     "id": "SRV-009",
@@ -85,9 +85,9 @@
     "category": "Vaccination",
     "price": 0,
     "status": "Available",
-    "provider": { "name": "Dinkes Riau", "hosp": "Puskesmas", "exp": "1 Thn" },
+    "provider": { "name": "Dinkes Riau", "hospital": "Puskesmas", "experience": "1 Year" },
     "detail": { "day": "Harian", "time": "08:00", "room": "Aula" },
-    "meta": { "rate": 4.2, "img": "/images_p4/vaksin-covid.jpg" }
+    "meta": { "rating": 4.2, "img": "/images_p4/vaksin-covid.jpg", "total_reviews": 500 }
   },
   {
     "id": "SRV-010",
@@ -95,9 +95,9 @@
     "category": "Therapy",
     "price": 250000,
     "status": "Limited",
-    "provider": { "name": "Ahmad S.Tr", "hosp": "Rehab Medik", "exp": "5 Thn" },
+    "provider": { "name": "Ahmad S.Tr", "hospital": "Rehab Medik", "experience": "5 Years" },
     "detail": { "day": "Kamis", "time": "13:00", "room": "R-Terapi" },
-    "meta": { "rate": 4.7, "img": "/images_p4/terapi-wicara.jpg" }
+    "meta": { "rating": 4.7, "img": "/images_p4/terapi-wicara.jpg", "total_reviews": 24 }
   },
   {
     "id": "SRV-011",
@@ -105,9 +105,9 @@
     "category": "Telemedicine",
     "price": 120000,
     "status": "Available",
-    "provider": { "name": "Rina S.Gz", "hosp": "NutriLife", "exp": "4 Thn" },
+    "provider": { "name": "Rina S.Gz", "hospital": "NutriLife", "experience": "4 Years" },
     "detail": { "day": "Selasa", "time": "15:00", "room": "Chat" },
-    "meta": { "rate": 4.6, "img": "/images_p4/ahli-gizi.jpg" }
+    "meta": { "rating": 4.6, "img": "/images_p4/ahli-gizi.jpg", "total_reviews": 38 }
   },
   {
     "id": "SRV-012",
@@ -115,9 +115,9 @@
     "category": "Diagnostic",
     "price": 275000,
     "status": "Available",
-    "provider": { "name": "Radiologi Dept", "hosp": "RS Medika", "exp": "20 Thn" },
+    "provider": { "name": "Radiologi Dept", "hospital": "RS Medika", "experience": "20 Years" },
     "detail": { "day": "Harian", "time": "08:00", "room": "Rad-1" },
-    "meta": { "rate": 4.4, "img": "/images_p4/rontgen.jpg" }
+    "meta": { "rating": 4.4, "img": "/images_p4/rontgen.jpg", "total_reviews": 150 }
   },
   {
     "id": "SRV-013",
@@ -125,9 +125,9 @@
     "category": "Telemedicine",
     "price": 75000,
     "status": "Available",
-    "provider": { "name": "drg. Anton", "hosp": "Dental Care", "exp": "8 Thn" },
+    "provider": { "name": "drg. Anton", "hospital": "Dental Care", "experience": "8 Years" },
     "detail": { "day": "Sabtu", "time": "17:00", "room": "Video" },
-    "meta": { "rate": 4.7, "img": "/images_p4/dokter-gigi.jpg" }
+    "meta": { "rating": 4.7, "img": "/images_p4/dokter-gigi.jpg", "total_reviews": 56 }
   },
   {
     "id": "SRV-014",
@@ -135,9 +135,9 @@
     "category": "Diagnostic",
     "price": 1500000,
     "status": "Limited",
-    "provider": { "name": "Tim Dokter", "hosp": "RS Utama", "exp": "25 Thn" },
+    "provider": { "name": "Tim Dokter", "hospital": "RS Utama", "experience": "25 Years" },
     "detail": { "day": "Senin", "time": "07:00", "room": "VIP-Room" },
-    "meta": { "rate": 5.0, "img": "/images_p4/mcu-vip.jpg" }
+    "meta": { "rating": 5.0, "img": "/images_p4/mcu-vip.jpg", "total_reviews": 12 }
   },
   {
     "id": "SRV-015",
@@ -145,9 +145,9 @@
     "category": "Vaccination",
     "price": 600000,
     "status": "Available",
-    "provider": { "name": "KKP Riau", "hosp": "Kantor Kes", "exp": "10 Thn" },
+    "provider": { "name": "KKP Riau", "hospital": "Kantor Kes", "experience": "10 Years" },
     "detail": { "day": "Senin", "time": "09:00", "room": "Klinik" },
-    "meta": { "rate": 4.6, "img": "/images_p4/vaksin-meningitis.jpg" }
+    "meta": { "rating": 4.6, "img": "/images_p4/vaksin-meningitis.jpg", "total_reviews": 310 }
   },
   {
     "id": "SRV-016",
@@ -155,9 +155,9 @@
     "category": "Telemedicine",
     "price": 300000,
     "status": "Available",
-    "provider": { "name": "dr. Cindy Sp.KK", "hosp": "Skin Center", "exp": "9 Thn" },
+    "provider": { "name": "dr. Cindy Sp.KK", "hospital": "Skin Center", "experience": "9 Years" },
     "detail": { "day": "Jumat", "time": "10:00", "room": "V-05" },
-    "meta": { "rate": 4.9, "img": "/images_p4/dokter-kulit.jpg" }
+    "meta": { "rating": 4.9, "img": "/images_p4/dokter-kulit.jpg", "total_reviews": 78 }
   },
   {
     "id": "SRV-017",
@@ -165,9 +165,9 @@
     "category": "Therapy",
     "price": 300000,
     "status": "Limited",
-    "provider": { "name": "Dian M.Psi", "hosp": "Mind Garden", "exp": "5 Thn" },
+    "provider": { "name": "Dian M.Psi", "hospital": "Mind Garden", "experience": "5 Years" },
     "detail": { "day": "Kamis", "time": "14:00", "room": "R-02" },
-    "meta": { "rate": 4.8, "img": "/images_p4/psikoterapi-anak.jpg" }
+    "meta": { "rating": 4.8, "img": "/images_p4/psikoterapi-anak.jpg", "total_reviews": 19 }
   },
   {
     "id": "SRV-018",
@@ -175,9 +175,9 @@
     "category": "Diagnostic",
     "price": 50000,
     "status": "Available",
-    "provider": { "name": "Apoteker", "hosp": "Apotek PCR", "exp": "2 Thn" },
+    "provider": { "name": "Apoteker", "hospital": "Apotek PCR", "experience": "2 Years" },
     "detail": { "day": "Harian", "time": "08:00", "room": "Front" },
-    "meta": { "rate": 4.5, "img": "/images_p4/cek-gula.jpg" }
+    "meta": { "rating": 4.5, "img": "/images_p4/cek-gula.jpg", "total_reviews": 200 }
   },
   {
     "id": "SRV-019",
@@ -185,9 +185,9 @@
     "category": "Telemedicine",
     "price": 350000,
     "status": "Available",
-    "provider": { "name": "dr. Kevin Sp.S", "hosp": "Neuro Center", "exp": "14 Thn" },
+    "provider": { "name": "dr. Kevin Sp.S", "hospital": "Neuro Center", "experience": "14 Years" },
     "detail": { "day": "Rabu", "time": "11:00", "room": "V-09" },
-    "meta": { "rate": 4.9, "img": "/images_p4/dokter-saraf.jpg" }
+    "meta": { "rating": 4.9, "img": "/images_p4/dokter-saraf.jpg", "total_reviews": 42 }
   },
   {
     "id": "SRV-020",
@@ -195,8 +195,8 @@
     "category": "HomeCare",
     "price": 350000,
     "status": "Available",
-    "provider": { "name": "Yandi S.Ft", "hosp": "PhysioHome", "exp": "11 Thn" },
+    "provider": { "name": "Yandi S.Ft", "hospital": "PhysioHome", "experience": "11 Years" },
     "detail": { "day": "Flexible", "time": "09:00", "room": "Home" },
-    "meta": { "rate": 4.9, "img": "/images_p4/fisio-stroke.jpg" }
+    "meta": { "rating": 4.9, "img": "/images_p4/fisio-stroke.jpg", "total_reviews": 27 }
   }
 ]

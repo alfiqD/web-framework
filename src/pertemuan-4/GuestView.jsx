@@ -2,20 +2,17 @@ import React, { useState } from 'react';
 import servicesData from './services.json';
 
 export default function GuestView() {
-  /* --- 1. Inisialisasi State Best Practice --- */
+  /* --- 1. State Management --- */
   const [dataForm, setDataForm] = useState({
     searchTerm: "",
     selectedCat: "All",
     selectedStat: "All"
   });
 
-  /* --- 2. Handle Change General --- */
+  /* --- 2. Handle Change --- */
   const handleChange = (evt) => {
     const { name, value } = evt.target;
-    setDataForm({
-      ...dataForm,
-      [name]: value,
-    });
+    setDataForm({ ...dataForm, [name]: value });
   };
 
   /* --- 3. Filtering Logic --- */
@@ -27,127 +24,139 @@ export default function GuestView() {
   });
 
   return (
-    <div className="bg-gradient-to-b from-slate-50 to-slate-100 rounded-[2.5rem] p-6 md:p-10 border border-slate-200/80 shadow-inner">
+    <div className="min-h-screen bg-slate-50 p-4 sm:p-8 lg:p-12 transition-all duration-500">
       
-      {/* Header */}
-      <div className="mb-10 text-center md:text-left">
-        <h2 className="text-3xl font-black text-slate-800 mb-2">Katalog Pasien</h2>
-        <p className="text-slate-500 font-medium">Temukan layanan kesehatan terbaik dari PCR Medika.</p>
+      {/* 1. Header Responsif */}
+      <div className="mb-10 text-center lg:text-left">
+        <h2 className="font-black text-slate-800 tracking-tight transition-all 
+          text-2xl sm:text-4xl md:text-5xl lg:text-6xl mb-4">
+          Katalog Pasien
+        </h2>
+        <p className="text-slate-500 font-medium text-sm md:text-lg lg:text-xl">
+          Layanan kesehatan terbaik untuk komunitas PCR Medika. (Min: 3 Kolom | Max: 5 Kolom)
+        </p>
       </div>
 
-      {/* Control Panel */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
-        <div className="md:col-span-2">
+      {/* 2. Control Panel */}
+      <div className="flex flex-col lg:flex-row gap-4 mb-12">
+        <div className="w-full lg:flex-1">
           <input 
             name="searchTerm"
             value={dataForm.searchTerm}
             type="text" 
-            placeholder="Cari keluhan atau layanan..." 
-            className="w-full px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm font-medium text-slate-700"
+            placeholder="Cari layanan kesehatan..." 
+            className="w-full px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none shadow-sm text-lg"
             onChange={handleChange}
           />
         </div>
-        <select 
-          name="selectedCat"
-          value={dataForm.selectedCat}
-          className="px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm font-bold text-slate-600 cursor-pointer"
-          onChange={handleChange}
-        >
-          <option value="All">Semua Kategori</option>
-          <option value="Telemedicine">Telemedicine</option>
-          <option value="Diagnostic">Diagnostic</option>
-          <option value="Vaccination">Vaccination</option>
-          <option value="Therapy">Therapy</option>
-          <option value="HomeCare">HomeCare</option>
-        </select>
-        <select 
-          name="selectedStat"
-          value={dataForm.selectedStat}
-          className="px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all shadow-sm font-bold text-slate-600 cursor-pointer"
-          onChange={handleChange}
-        >
-          <option value="All">Status (Semua)</option>
-          <option value="Available">Available</option>
-          <option value="Non-Available">Non-Available</option>
-          <option value="Limited">Limited</option>
-        </select>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full lg:w-auto">
+          <select 
+            name="selectedCat"
+            value={dataForm.selectedCat}
+            className="px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 font-bold text-slate-600 cursor-pointer shadow-sm min-w-[200px]"
+            onChange={handleChange}
+          >
+            <option value="All">Semua Kategori</option>
+            <option value="Telemedicine">Telemedicine</option>
+            <option value="Diagnostic">Diagnostic</option>
+            <option value="Vaccination">Vaccination</option>
+            <option value="Therapy">Therapy</option>
+            <option value="HomeCare">HomeCare</option>
+          </select>
+
+          <select 
+            name="selectedStat"
+            value={dataForm.selectedStat}
+            className="px-6 py-4 rounded-2xl bg-white border-none ring-1 ring-slate-200 font-bold text-slate-600 cursor-pointer shadow-sm"
+            onChange={handleChange}
+          >
+            <option value="All">Status (Semua)</option>
+            <option value="Available">Available</option>
+            <option value="Non-Available">Non-Available</option>
+            <option value="Limited">Limited</option>
+          </select>
+        </div>
       </div>
 
-      {/* Card Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+      {/* 3. Grid Logic (Min 3, Max 5):
+          - grid-cols-3: Minimal 3 kolom (Default/Mobile)
+          - xl:grid-cols-4: Berubah jadi 4 kolom saat layar cukup lebar (~90% zoom)
+          - 2xl:grid-cols-5: Maksimal 5 kolom saat layar sangat lebar (~70% zoom)
+      */}
+      <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:gap-8">
         {filtered.length > 0 ? (
           filtered.map((item) => (
-            <div key={item.id} className="bg-white rounded-[2rem] p-3 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col group">
+            <div key={item.id} className="bg-white rounded-[2.5rem] p-3 md:p-4 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-slate-100 flex flex-col group">
               
-              {/* Image Container with Badges */}
-              <div className="relative h-48 overflow-hidden rounded-[1.5rem] mb-4 bg-slate-100">
+              {/* Image Container */}
+              <div className="relative h-32 sm:h-48 overflow-hidden rounded-[1.8rem] mb-4 bg-slate-100">
                 <img 
                   src={item.meta.img} 
                   alt={item.service_name} 
                   className="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-out" 
                 />
                 
-                {/* Status Badge (Diperbarui untuk 3 warna) */}
-                <div className={`absolute top-3 right-3 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider shadow-lg backdrop-blur-md border ${
-                  item.status === 'Available' 
-                    ? 'bg-green-500/90 text-white border-green-400/50' 
-                    : item.status === 'Limited'
-                    ? 'bg-amber-500/90 text-white border-amber-400/50'
-                    : 'bg-red-500/90 text-white border-red-400/50'
+                <div className={`absolute top-2 right-2 md:top-4 md:right-4 px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-widest shadow-lg backdrop-blur-md border ${
+                  item.status === 'Available' ? 'bg-green-500 text-white' 
+                  : item.status === 'Limited' ? 'bg-amber-500 text-white'
+                  : 'bg-red-500 text-white'
                 }`}>
                   {item.status}
-                </div>
-                
-                {/* Category Badge */}
-                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-bold text-slate-700 shadow-sm">
-                  {item.category}
                 </div>
               </div>
 
               {/* Card Body */}
-              <div className="px-3 pb-3 flex-1 flex flex-col">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <span className="text-xs font-black text-yellow-500">★ {item.meta.rate}</span>
-                  <span className="text-[10px] text-slate-400 font-medium">({item.detail.day}, {item.detail.time})</span>
+              <div className="px-1 pb-3 flex-1 flex flex-col">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-1">
+                    <span className="text-[10px] md:text-sm font-black text-yellow-500">★ {item.meta.rating}</span>
+                    <span className="hidden md:inline-block text-[10px] text-slate-400 font-medium">({item.meta.total_reviews})</span>
+                  </div>
+                  <span className="text-[9px] md:text-[11px] bg-slate-50 text-blue-600 px-2 py-0.5 rounded-lg font-bold italic">
+                    {item.id}
+                  </span>
                 </div>
                 
-                <h3 className="font-black text-slate-800 text-[17px] mb-3 leading-snug line-clamp-2 min-h-[3rem]">
+                <h3 className="font-black text-slate-800 text-xs sm:text-lg md:text-xl mb-2 leading-tight min-h-[2.5rem] line-clamp-2">
                   {item.service_name}
                 </h3>
                 
-                <p className="text-[12px] text-slate-500 font-medium mb-6 flex-1">
-                  Oleh <span className="text-blue-600 font-bold">{item.provider.name}</span>
-                </p>
+                <div className="mb-4 space-y-1">
+                  <p className="text-[10px] md:text-sm text-slate-700 font-bold flex flex-wrap items-center gap-1">
+                    👨‍⚕️ {item.provider.name} 
+                    <span className="hidden sm:inline text-[9px] font-medium text-slate-400 italic">({item.provider.experience})</span>
+                  </p>
+                  <p className="hidden sm:block text-[10px] md:text-xs text-slate-500 font-medium">
+                    🏢 {item.provider.hospital}
+                  </p>
+                  <div className="bg-slate-50 rounded-xl p-2 mt-2 border border-slate-100 flex justify-between items-center text-[8px] md:text-[10px]">
+                    <span className="text-slate-500 font-bold">📅 {item.detail.day}</span>
+                    <span className="text-blue-600 font-black">📍 {item.detail.room}</span>
+                  </div>
+                </div>
 
-                {/* Footer Card */}
-                <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-4 border-t border-slate-100 mt-auto">
                   <div className="flex flex-col">
-                    <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Biaya</span>
-                    <span className="text-slate-800 font-black text-lg">
-                      {item.price === 0 ? "GRATIS" : `Rp${item.price.toLocaleString('id-ID')}`}
+                    <span className="hidden md:block text-[9px] text-slate-400 font-black uppercase">Biaya</span>
+                    <span className="text-slate-900 font-black text-xs sm:text-base md:text-xl">
+                      {item.price === 0 ? "GRATIS" : `Rp${(item.price/1000)}k`}
                     </span>
                   </div>
                   
-                  {/* Tombol Action */}
-                  <button 
-                    disabled={item.status !== 'Available'}
-                    className={`px-5 py-2.5 rounded-xl font-bold text-xs transition-all ${
-                      item.status === 'Available' 
-                      ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-600/30 active:scale-95' 
-                      : 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                    }`}
-                  >
-                    {item.status === 'Available' ? 'Pesan' : 'Penuh'}
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white p-2 md:px-5 md:py-2.5 rounded-xl transition-all shadow-lg active:scale-95">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+                    </svg>
                   </button>
                 </div>
               </div>
             </div>
           ))
         ) : (
-          <div className="col-span-full py-24 text-center">
-            <span className="text-5xl block mb-4">🩺</span>
-            <h3 className="text-xl font-bold text-slate-600">Layanan tidak ditemukan</h3>
-            <p className="text-slate-400 mt-2">Coba sesuaikan kata kunci pencarian atau filter Anda.</p>
+          <div className="col-span-full py-20 text-center bg-white rounded-[3rem] border-2 border-dashed border-slate-200">
+             <h3 className="text-2xl font-bold text-slate-400">Layanan tidak ditemukan</h3>
           </div>
         )}
       </div>
