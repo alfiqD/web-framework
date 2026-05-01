@@ -1,0 +1,50 @@
+/* 1. Import Tailwind */
+@import "tailwindcss";
+
+/* 2. Definisi Font Face */
+@font-face {
+    font-family: 'Barlow';
+    src: url('/fonts/Barlow-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Regular.ttf');
+}
+
+/* 3. Daftarkan variabel ke tema */
+@theme {
+    --font-barlow: "Barlow", sans-serif;
+    --font-poppins: "Poppins", sans-serif;
+
+    /* Warna Latar & Teks (Dibuat lebih bersih dan elegan) */
+    --color-latar: #fafaf9; /* Putih hangat / warm white */
+    --color-teks: #3f3f46; 
+    --color-teks-samping: #a1a1aa;
+    --color-garis: #f4f4f5; 
+
+    /* Warna Utama Tema Beauty Store */
+    --color-pink-utama: #E17887; 
+    --color-pink-pudar: #FFE4E6;
+    --color-mint-utama: #7BBEA5;
+    --color-mint-pudar: #D4F3E6;
+
+    /* Warna Status (Disesuaikan agar lebih soft) */
+    --color-hijau: #34d399; 
+    --color-merah: #fb7185; /* Disesuaikan ke arah rose/pinkish */
+    --color-biru: #60a5fa;
+    --color-kuning: #fbbf24; 
+}
+
+/* 4. Terapkan font default */
+@layer base {
+    body {
+        /* Barlow untuk teks keseluruhan, background menggunakan warna latar baru */
+        @apply font-barlow bg-latar text-teks;
+    }
+    
+    /* Poppins khusus untuk judul agar tegas dan membulat */
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-poppins;
+    }
+}
