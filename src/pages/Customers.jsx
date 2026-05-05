@@ -1,54 +1,73 @@
 import { useState } from 'react';
 import PageHeader from "../components/PageHeader";
-// Import data JSON yang sudah kita buat tadi
+import { MdOutlineAutoAwesome } from "react-icons/md";
+// Import data JSON
 import customersData from "../data/customers.json";
 
 export default function Customers() {
     // State untuk mengontrol buka/tutup Modal Form
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    // Fungsi Helper untuk warna status sesuai permintaan
+    const getStatusStyles = (loyalty) => {
+        switch (loyalty) {
+            case 'Gold': 
+                return "bg-[#ccf1eb] text-[#00B69B]"; // Hijau
+            case 'Silver': 
+                return "bg-[#e1d5fd] text-[#6226EF]"; // Ungu
+            case 'Rejected': 
+                return "bg-[#fde1e1] text-[#EF3826]"; // Merah
+            case 'Bronze': 
+            default:
+                return "bg-[#ffe9d5] text-[#FFA756]"; // Oranye
+        }
+    };
+
     return (
-        <div id="dashboard-container" className="p-6">
+        <div id="dashboard-container" className="flex flex-col gap-6 font-nunito bg-[#F5F6FA] min-h-screen pb-10">
             
-            {/* PageHeader dengan tombol Add Customer yang memicu Modal */}
+            {/* PageHeader dengan tombol warna merah #B01030 */}
             <PageHeader 
                 title="Customers" 
                 breadcrumb={["Dashboard", "Customers"]}
             >
                 <button 
                     onClick={() => setIsModalOpen(true)}
-                    className="bg-green-500 text-white px-6 py-3 rounded-xl hover:bg-green-600 transition-all font-bold shadow-md active:scale-95"
+                    className="bg-[#B01030] text-white px-5 py-2.5 rounded-xl hover:bg-[#8e0d27] transition-all font-bold shadow-lg shadow-red-900/10 text-sm flex items-center gap-2 active:scale-95"
                 >
-                    + Add Customers
+                    <MdOutlineAutoAwesome /> + Add Customers
                 </button>
             </PageHeader>
 
-            {/* TABEL DATA CUSTOMERS (30 Data) */}
-            <div className="mt-8 bg-white rounded-3xl shadow-sm overflow-hidden border border-gray-100">
+            <div className="mx-8 bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                {/* Judul Tabel/Data dengan warna #B01030 */}
+                <div className="p-6 border-b border-gray-50">
+                    <h2 className="text-[18px] font-extrabold text-[#B01030]">Data Customer</h2>
+                </div>
+
                 <table className="w-full text-left border-collapse">
-                    <thead className="bg-gray-50 border-b border-gray-100">
+                    <thead className="bg-gray-50/50">
                         <tr>
-                            <th className="p-5 font-bold text-gray-600 uppercase text-xs tracking-wider">ID</th>
-                            <th className="p-5 font-bold text-gray-600 uppercase text-xs tracking-wider">Customer Name</th>
-                            <th className="p-5 font-bold text-gray-600 uppercase text-xs tracking-wider">Email & Phone</th>
-                            <th className="p-5 font-bold text-gray-600 uppercase text-xs tracking-wider">Loyalty Level</th>
+                            {/* Judul Kolom: 14px Extra Bold, Warna #202224 */}
+                            <th className="p-5 text-[14px] font-extrabold text-[#202224] uppercase tracking-wider">ID</th>
+                            <th className="p-5 text-[14px] font-extrabold text-[#202224] uppercase tracking-wider">Customer Name</th>
+                            <th className="p-5 text-[14px] font-extrabold text-[#202224] uppercase tracking-wider">Email & Phone</th>
+                            <th className="p-5 text-[14px] font-extrabold text-[#202224] uppercase tracking-wider text-right">Status</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-50">
                         {customersData.map((cust) => (
                             <tr key={cust.customerId} className="hover:bg-gray-50/50 transition-colors">
-                                <td className="p-5 text-gray-400 font-mono text-sm">{cust.customerId}</td>
-                                <td className="p-5 font-bold text-gray-800">{cust.customerName}</td>
-                                <td className="p-5">
-                                    <div className="text-gray-700 font-medium">{cust.email}</div>
-                                    <div className="text-xs text-gray-400 italic">{cust.phone}</div>
+                                {/* Isi Data: 14px Semi Bold, Warna #202224 */}
+                                <td className="p-5 text-[14px] font-semibold text-[#202224]">{cust.customerId.slice(-5)}</td>
+                                <td className="p-5 text-[14px] font-semibold text-[#202224]">{cust.customerName}</td>
+                                <td className="p-5 text-[14px] font-semibold text-[#202224]">
+                                    <div>{cust.email}</div>
+                                    <div className="text-[12px] text-gray-400 font-normal">{cust.phone}</div>
                                 </td>
-                                <td className="p-5">
-                                    <span className={`px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-tighter shadow-sm ${
-                                        cust.loyalty === 'Gold' ? 'bg-orange-100 text-orange-600 border border-orange-200' :
-                                        cust.loyalty === 'Silver' ? 'bg-slate-100 text-slate-600 border border-slate-200' : 
-                                        'bg-yellow-600 text-white'
-                                    }`}>
+                                {/* Status ditaruh di ujung (kanan) */}
+                                <td className="p-5 text-right">
+                                    <span className={`inline-block px-5 py-2 rounded-xl text-[13px] font-bold min-w-[110px] text-center ${getStatusStyles(cust.loyalty)}`}>
                                         {cust.loyalty}
                                     </span>
                                 </td>
@@ -58,51 +77,37 @@ export default function Customers() {
                 </table>
             </div>
 
-            {/* MODAL FORM ADD CUSTOMER (Muncul kalau isModalOpen true) */}
+            {/* MODAL FORM */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-                    <div className="bg-white p-8 rounded-[32px] w-full max-w-md shadow-2xl animate-in fade-in zoom-in duration-300">
+                <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+                    <div className="bg-white p-8 rounded-[32px] w-full max-w-md shadow-2xl animate-in fade-in zoom-in duration-200">
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-2xl font-black text-gray-900 uppercase italic tracking-tighter">Add New Customer</h2>
+                            <h2 className="text-[24px] font-extrabold text-[#202224]">Add New Customer</h2>
                             <button onClick={() => setIsModalOpen(false)} className="text-gray-400 hover:text-red-500 font-bold text-2xl">×</button>
                         </div>
 
                         <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
                             <div className="space-y-1">
                                 <label className="text-xs font-bold text-gray-400 ml-1 uppercase">Full Name</label>
-                                <input type="text" placeholder="e.g. Alfiq Debriliant" className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:ring-2 ring-green-500 transition-all font-medium" />
+                                <input type="text" placeholder="Name" className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:ring-2 ring-[#B01030] transition-all font-semibold" />
                             </div>
                             
                             <div className="space-y-1">
                                 <label className="text-xs font-bold text-gray-400 ml-1 uppercase">Email Address</label>
-                                <input type="email" placeholder="email@example.com" className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:ring-2 ring-green-500 transition-all font-medium" />
-                            </div>
-
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-gray-400 ml-1 uppercase">Phone Number</label>
-                                <input type="text" placeholder="0812345..." className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:ring-2 ring-green-500 transition-all font-medium" />
-                            </div>
-
-                            <div className="space-y-1">
-                                <label className="text-xs font-bold text-gray-400 ml-1 uppercase">Loyalty Level</label>
-                                <select className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none font-medium appearance-none">
-                                    <option>Bronze</option>
-                                    <option>Silver</option>
-                                    <option>Gold</option>
-                                </select>
+                                <input type="email" placeholder="Email" className="w-full p-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:ring-2 ring-[#B01030] transition-all font-semibold" />
                             </div>
 
                             <div className="flex space-x-3 pt-6">
                                 <button 
                                     type="button" 
                                     onClick={() => setIsModalOpen(false)} 
-                                    className="flex-1 p-4 bg-gray-100 text-gray-500 rounded-2xl font-bold hover:bg-gray-200 transition-all active:scale-95"
+                                    className="flex-1 p-4 bg-gray-100 text-gray-500 rounded-2xl font-bold hover:bg-gray-200 transition-all"
                                 >
                                     Cancel
                                 </button>
                                 <button 
                                     type="submit" 
-                                    className="flex-1 p-4 bg-green-500 text-white rounded-2xl font-bold hover:bg-green-600 shadow-lg shadow-green-200 transition-all active:scale-95 uppercase tracking-wider"
+                                    className="flex-1 p-4 bg-[#B01030] text-white rounded-2xl font-bold hover:bg-[#8e0d27] shadow-lg shadow-red-900/10 transition-all active:scale-95"
                                 >
                                     Save Data
                                 </button>

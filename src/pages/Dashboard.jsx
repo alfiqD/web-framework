@@ -1,3 +1,4 @@
+import React from "react";
 import PageHeader from "../components/PageHeader";
 import { 
     MdOutlineAttachMoney, 
@@ -12,165 +13,111 @@ import {
 
 export default function Dashboard() {
     return (
-        <div id="dashboard-container" className="flex flex-col gap-6">
+        <div id="dashboard-container" className="flex flex-col gap-6 font-nunito bg-[#F5F6FA] min-h-screen pb-10">
             
             {/* --- PAGE HEADER --- */}
             <PageHeader title="Dashboard" breadcrumb={["Dashboard"]}>
-                <button className="bg-[#E17887] text-white px-5 py-2.5 rounded-xl hover:bg-[#d06172] transition-colors font-semibold shadow-md shadow-pink-200 text-sm">
-                    + New Patient
+                <button className="bg-[#B01030] text-white px-5 py-2.5 rounded-xl hover:bg-[#8e0d27] transition-all font-bold shadow-lg shadow-red-900/10 text-sm flex items-center gap-2">
+                    <MdOutlineAutoAwesome /> + New Patient
                 </button>
             </PageHeader>
 
-            {/* --- TOP ROW: KARTU STATISTIK BESAR & TIMBUL --- */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-1">
-                
-                {/* Card 1: Earnings (Pink) */}
-                <div className="relative overflow-hidden flex items-center space-x-4 bg-[#FFE4E6] rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-pink-200/50 cursor-pointer border border-white/50">
-                    <div className="bg-white text-gray-700 rounded-full p-4 shadow-sm z-10">
-                        <MdOutlineAttachMoney className="text-2xl" />
+            {/* --- TOP ROW: 4 STATISTIC CARDS --- */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-8">
+                {[
+                    { title: "Earnings", value: "$125,000", icon: <MdOutlineAttachMoney /> },
+                    { title: "Total Patients", value: "315", icon: <MdOutlinePersonOutline /> },
+                    { title: "Appointments", value: "250", icon: <MdOutlineEventAvailable /> },
+                    { title: "Surgeries", value: "65", icon: <MdOutlineMedicalServices /> }
+                ].map((item, idx) => (
+                    <div key={idx} className="bg-white relative overflow-hidden flex items-center justify-between rounded-3xl p-6 shadow-sm border border-gray-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-md cursor-pointer group">
+                        <div className="flex flex-col z-10">
+                            {/* Judul Menu Atas: 16px */}
+                            <span className="text-[16px] text-gray-500 font-bold mb-1">{item.title}</span>
+                            {/* Angka Utama: Diubah ke 28px */}
+                            <span className="text-[28px] font-extrabold text-[#202224] leading-tight">{item.value}</span>
+                        </div>
+                        <div className="bg-[#F5F6FA] text-[#B01030] rounded-2xl p-4 group-hover:bg-[#B01030] group-hover:text-white transition-colors duration-300">
+                            <div className="text-3xl">{item.icon}</div>
+                        </div>
                     </div>
-                    <div className="flex flex-col z-10">
-                        <span className="text-[13px] text-gray-500 font-semibold mb-0.5">Earnings</span>
-                        <span className="text-3xl font-extrabold text-gray-800">$125,000</span>
-                    </div>
-                    <MdOutlineAutoAwesome className="absolute -right-4 -bottom-4 text-white opacity-40 text-7xl transform rotate-12" />
-                </div>
-
-                {/* Card 2: Total Patients (Mint) */}
-                <div className="relative overflow-hidden flex items-center space-x-4 bg-[#D4F3E6] rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-green-200/50 cursor-pointer border border-white/50">
-                    <div className="bg-white text-gray-700 rounded-full p-4 shadow-sm z-10">
-                        <MdOutlinePersonOutline className="text-2xl" />
-                    </div>
-                    <div className="flex flex-col z-10">
-                        <span className="text-[13px] text-gray-500 font-semibold mb-0.5">Total Patients</span>
-                        <span className="text-3xl font-extrabold text-gray-800">315</span>
-                    </div>
-                    <MdOutlineAutoAwesome className="absolute -right-4 -bottom-4 text-white opacity-50 text-7xl transform rotate-12" />
-                </div>
-
-                {/* Card 3: Appointments (Mint) */}
-                <div className="relative overflow-hidden flex items-center space-x-4 bg-[#D4F3E6] rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-green-200/50 cursor-pointer border border-white/50">
-                    <div className="bg-white text-gray-700 rounded-full p-4 shadow-sm z-10">
-                        <MdOutlineEventAvailable className="text-2xl" />
-                    </div>
-                    <div className="flex flex-col z-10">
-                        <span className="text-[13px] text-gray-500 font-semibold mb-0.5">Appointments</span>
-                        <span className="text-3xl font-extrabold text-gray-800">250</span>
-                    </div>
-                    <MdOutlineAutoAwesome className="absolute -right-4 -bottom-4 text-white opacity-50 text-7xl transform rotate-12" />
-                </div>
-
-                {/* Card 4: Surgeries (Pink) */}
-                <div className="relative overflow-hidden flex items-center space-x-4 bg-[#FFE4E6] rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-pink-200/50 cursor-pointer border border-white/50">
-                    <div className="bg-white text-gray-700 rounded-full p-4 shadow-sm z-10">
-                        <MdOutlineMedicalServices className="text-2xl" />
-                    </div>
-                    <div className="flex flex-col z-10">
-                        <span className="text-[13px] text-gray-500 font-semibold mb-0.5">Surgeries</span>
-                        <span className="text-3xl font-extrabold text-gray-800">65</span>
-                    </div>
-                    <MdOutlineAutoAwesome className="absolute -right-4 -bottom-4 text-white opacity-40 text-7xl transform rotate-12" />
-                </div>
-
+                ))}
             </div>
 
-            {/* --- MAIN DASHBOARD AREA (Responsive Grid 3 Kolom) --- */}
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 px-1 mt-2">
+            {/* --- MAIN CONTENT AREA --- */}
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 px-8 mt-2">
                 
-                {/* --- KOLOM KIRI & TENGAH (Makan 2 kolom) --- */}
                 <div className="xl:col-span-2 flex flex-col gap-6">
                     
-                    {/* KARTU 1: REVENUE (Line Chart Dummy Pakai SVG) */}
-                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-gray-200/50 cursor-pointer">
-                        <div className="flex justify-between items-center mb-6">
-                            <div>
-                                <h2 className="text-lg font-bold text-gray-800">Revenue</h2>
-                                <div className="flex gap-4 text-xs font-medium text-gray-400 mt-1">
-                                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#7BBEA5]"></div> Income</span>
-                                    <span className="flex items-center gap-1"><div className="w-2 h-2 rounded-full bg-[#E17887]"></div> Expenses</span>
-                                </div>
-                            </div>
-                            <div className="bg-gray-50 px-4 py-2 rounded-xl text-sm font-medium text-gray-600 flex items-center gap-2 cursor-pointer">
-                                2027 <MdOutlineKeyboardArrowDown />
+                    {/* REVENUE CHART */}
+                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                        <div className="flex flex-col items-center mb-10 relative">
+                            {/* Judul Card Lain: 24px & Center */}
+                            <h2 className="text-[24px] font-extrabold text-[#202224] text-center w-full">Revenue</h2>
+                            <div className="absolute right-0 top-1 bg-[#F5F6FA] px-4 py-2 rounded-xl text-sm font-bold text-[#202224] flex items-center gap-2 cursor-pointer border border-gray-100">
+                                2026 <MdOutlineKeyboardArrowDown />
                             </div>
                         </div>
-                        {/* Dummy SVG Chart */}
-                        <div className="w-full h-48 relative flex items-end">
+                        <div className="w-full h-56 relative flex items-end">
                             <svg className="w-full h-full absolute bottom-0" preserveAspectRatio="none" viewBox="0 0 100 40">
-                                <path d="M 0 35 C 15 20, 30 40, 50 15 C 70 5, 85 25, 100 10" fill="none" stroke="#7BBEA5" strokeWidth="1.5" />
-                                <path d="M 0 30 C 20 35, 40 15, 60 30 C 80 40, 90 20, 100 25" fill="none" stroke="#E17887" strokeWidth="1.5" strokeDasharray="3 2" />
+                                <path d="M 0 35 C 15 20, 30 40, 50 15 C 70 5, 85 25, 100 10" fill="none" stroke="#B01030" strokeWidth="2" />
+                                <path d="M 0 30 C 20 35, 40 15, 60 30 C 80 40, 90 20, 100 25" fill="none" stroke="#202224" strokeWidth="1" strokeDasharray="2 2" opacity="0.1" />
                             </svg>
-                            {/* Garis bantu horizontal */}
                             <div className="w-full h-full flex flex-col justify-between border-b border-gray-100 pb-2">
                                 {[...Array(5)].map((_, i) => (
-                                    <div key={i} className="border-t border-gray-100 w-full h-0"></div>
+                                    <div key={i} className="border-t border-gray-50 w-full h-0"></div>
                                 ))}
                             </div>
                         </div>
                     </div>
 
-                    {/* KARTU 2 & 3: GRID DI DALAM GRID */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        
-                        {/* KARTU BAR CHART (Patients by Gender) */}
-                        <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-gray-200/50 cursor-pointer">
-                            <h2 className="text-lg font-bold text-gray-800 mb-6">Patients by Gender</h2>
-                            <div className="flex items-end justify-between h-40 mt-4 px-2">
-                                {/* Dummy CSS Bars */}
-                                {[40, 60, 30, 70, 50, 40].map((h, i) => (
-                                    <div key={i} className="flex gap-1.5 items-end h-full">
-                                        <div className="w-3 md:w-4 bg-[#FFE4E6] rounded-t-md transition-all hover:bg-[#E17887]" style={{ height: `${h}%` }}></div>
-                                        <div className="w-3 md:w-4 bg-[#D4F3E6] rounded-t-md transition-all hover:bg-[#7BBEA5]" style={{ height: `${h + 20}%` }}></div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* KARTU DONUT CHART (Patient by Treatment) */}
-                        <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-gray-200/50 cursor-pointer">
-                            <h2 className="text-lg font-bold text-gray-800 w-full text-left mb-4">Patient by Treatment</h2>
-                            {/* CSS Donut Chart */}
-                            <div className="relative w-40 h-40 rounded-full bg-[conic-gradient(#7BBEA5_0%_45%,_#E17887_45%_75%,_#f3f4f6_75%_100%)] flex items-center justify-center shadow-inner">
-                                <div className="w-32 h-32 bg-white rounded-full flex flex-col items-center justify-center shadow-sm">
-                                    <span className="text-xs text-gray-400 font-medium">Total Patient</span>
-                                    <span className="font-bold text-gray-800 text-2xl">315</span>
-                                </div>
-                            </div>
-                            <div className="flex w-full justify-between mt-6 text-sm">
-                                <span className="flex items-center gap-2 font-medium text-gray-600"><div className="w-3 h-3 rounded-full bg-[#7BBEA5]"></div> Rhinoplasty</span>
-                                <span className="font-bold text-gray-800">45%</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* KARTU 4: TABEL STATUS */}
-                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-gray-200/50 cursor-pointer">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-lg font-bold text-gray-800">Patient Status</h2>
-                            <button className="text-sm font-semibold text-[#7BBEA5] hover:underline">View All</button>
+                    {/* PATIENT STATUS TABLE */}
+                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                        <div className="flex flex-col items-center mb-6 relative">
+                            {/* Judul Card Lain: 24px & Center */}
+                            <h2 className="text-[24px] font-extrabold text-[#202224] text-center w-full">Patient Status</h2>
+                            <button className="absolute right-0 top-2 text-sm font-bold text-[#B01030] hover:underline">View All</button>
                         </div>
                         <div className="overflow-x-auto">
-                            <table className="w-full text-left text-sm">
-                                <thead className="text-xs text-gray-400 uppercase font-medium border-b border-gray-50">
+                            <table className="w-full text-left">
+                                <thead className="text-gray-400 font-bold border-b border-gray-50 text-[14px]">
                                     <tr>
-                                        <th className="py-3 font-medium">Patient</th>
-                                        <th className="py-3 font-medium">Treatment</th>
-                                        <th className="py-3 font-medium">Date & Time</th>
-                                        <th className="py-3 font-medium">Status</th>
+                                        <th className="py-4 px-2">Patient</th>
+                                        <th className="py-4">Treatment</th>
+                                        <th className="py-4">Date</th>
+                                        <th className="py-4 text-center">Status</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr className="border-b border-gray-50 hover:bg-gray-50">
-                                        <td className="py-4 font-bold text-gray-800">Sarah Miller<br/><span className="text-xs font-normal text-gray-400">PB-001</span></td>
-                                        <td className="py-4 text-gray-600 font-medium">Facial Rejuvenation<br/><span className="text-xs text-gray-400">Dr. Olivia Grant</span></td>
-                                        <td className="py-4 text-gray-600 font-medium">2026-05-12<br/><span className="text-xs text-gray-400">09:00 AM</span></td>
-                                        <td className="py-4"><span className="bg-[#D4F3E6] text-[#5fa389] px-3 py-1 rounded-full text-xs font-bold">Completed</span></td>
+                                <tbody className="text-[14px]">
+                                    <tr className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                        <td className="py-5 px-2 font-bold text-[#202224]">Sarah Miller</td>
+                                        <td className="py-5 text-gray-600 font-medium">Facial Rejuvenation</td>
+                                        <td className="py-5 text-gray-600">12.09.2024</td>
+                                        <td className="py-5 text-center">
+                                            <span className="bg-[#00B69B] text-white px-6 py-2 rounded-full text-[14px] font-bold inline-block min-w-[130px]">
+                                                Delivered
+                                            </span>
+                                        </td>
                                     </tr>
-                                    <tr className="hover:bg-gray-50">
-                                        <td className="py-4 font-bold text-gray-800">Maurice Galley<br/><span className="text-xs font-normal text-gray-400">PB-002</span></td>
-                                        <td className="py-4 text-gray-600 font-medium">Laser Hair Removal<br/><span className="text-xs text-gray-400">Dr. David Carter</span></td>
-                                        <td className="py-4 text-gray-600 font-medium">2026-05-12<br/><span className="text-xs text-gray-400">12:00 PM</span></td>
-                                        <td className="py-4"><span className="bg-[#FFE4E6] text-[#E17887] px-3 py-1 rounded-full text-xs font-bold">In Progress</span></td>
+                                    <tr className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                        <td className="py-5 px-2 font-bold text-[#202224]">Maurice Galley</td>
+                                        <td className="py-5 text-gray-600 font-medium">Laser Hair Removal</td>
+                                        <td className="py-5 text-gray-600">13.09.2024</td>
+                                        <td className="py-5 text-center">
+                                            <span className="bg-[#6226EF] text-white px-6 py-2 rounded-full text-[14px] font-bold inline-block min-w-[130px]">
+                                                Progressed
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr className="hover:bg-gray-50 transition-colors">
+                                        <td className="py-5 px-2 font-bold text-[#202224]">Michael Brown</td>
+                                        <td className="py-5 text-gray-600 font-medium">Rhinoplasty</td>
+                                        <td className="py-5 text-gray-600">14.09.2024</td>
+                                        <td className="py-5 text-center">
+                                            <span className="bg-[#FFF4F2] text-[#B01030] px-6 py-2 rounded-full text-[14px] font-bold inline-block min-w-[130px]">
+                                                In Progress
+                                            </span>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -178,72 +125,49 @@ export default function Dashboard() {
                     </div>
                 </div>
 
-                {/* --- KOLOM KANAN (Makan 1 kolom) --- */}
+                {/* --- RIGHT COLUMN --- */}
                 <div className="flex flex-col gap-6">
                     
-                    {/* KARTU 5: SURGERY SCHEDULES */}
-                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-gray-200/50 cursor-pointer">
-                        <div className="flex justify-between items-center mb-6">
-                            <div>
-                                <h2 className="text-lg font-bold text-gray-800">Surgery Schedules</h2>
-                                <p className="text-xs text-gray-400 font-medium mt-1">Tuesday, 5 Sep 2028</p>
-                            </div>
-                            <button className="text-xl text-gray-400 hover:text-[#7BBEA5]">+</button>
-                        </div>
-                        
-                        <div className="space-y-4">
-                            {/* Jadwal 1 (Selesai) */}
-                            <div className="flex gap-4">
-                                <MdCheckCircle className="text-[#7BBEA5] text-xl shrink-0 mt-1" />
-                                <div className="w-full">
-                                    <div className="flex justify-between w-full">
-                                        <span className="font-bold text-gray-800 text-[15px]">Dr. Olivia Grant</span>
-                                        <span className="bg-[#FFE4E6] text-[#E17887] text-[10px] font-bold px-2 py-0.5 rounded-md">Room OR 1</span>
+                    {/* SURGERY SCHEDULES */}
+                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                        <h2 className="text-[24px] font-extrabold text-[#202224] mb-6 text-center">Surgery Schedules</h2>
+                        <div className="space-y-6">
+                            {[
+                                { dr: "Dr. Olivia Grant", patient: "Sarah Miller", time: "09:00 AM", room: "OR 1", done: true },
+                                { dr: "Dr. David Carter", patient: "Michael Brown", time: "12:00 PM", room: "OR 2", done: false }
+                            ].map((item, i) => (
+                                <div key={i} className="flex gap-4 items-start">
+                                    <div className={`mt-1 ${item.done ? "text-[#00B69B]" : "text-gray-300"}`}>
+                                        {item.done ? <MdCheckCircle size={24} /> : <MdOutlineRadioButtonUnchecked size={24} />}
                                     </div>
-                                    <div className="flex justify-between w-full mt-1">
-                                        <span className="text-xs text-gray-400 font-medium">Sarah Miller</span>
-                                        <span className="text-xs text-gray-400 font-medium">9:00 AM - 11:30 AM</span>
+                                    <div className="flex-1">
+                                        <div className="flex justify-between">
+                                            <p className="font-bold text-[#202224]">{item.dr}</p>
+                                            <span className="text-[10px] font-extrabold px-2 py-1 bg-[#F5F6FA] rounded-md text-gray-500 uppercase">{item.room}</span>
+                                        </div>
+                                        <p className="text-sm text-gray-400 font-medium">{item.patient} • {item.time}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <hr className="border-gray-50" />
-                            {/* Jadwal 2 (Belum) */}
-                            <div className="flex gap-4">
-                                <MdOutlineRadioButtonUnchecked className="text-gray-300 text-xl shrink-0 mt-1" />
-                                <div className="w-full">
-                                    <div className="flex justify-between w-full">
-                                        <span className="font-bold text-gray-800 text-[15px]">Dr. David Carter</span>
-                                        <span className="bg-gray-100 text-gray-500 text-[10px] font-bold px-2 py-0.5 rounded-md">Room OR 2</span>
-                                    </div>
-                                    <div className="flex justify-between w-full mt-1">
-                                        <span className="text-xs text-gray-400 font-medium">Michael Brown</span>
-                                        <span className="text-xs text-gray-400 font-medium">12:00 PM - 2:00 PM</span>
-                                    </div>
-                                </div>
-                            </div>
+                            ))}
                         </div>
-                        <button className="w-full mt-6 bg-[#D4F3E6] text-[#5fa389] font-bold py-3 rounded-xl text-sm hover:bg-[#c3ecd9] transition-colors">
-                            View All Schedule
+                        <button className="w-full mt-8 bg-[#B01030] text-white font-bold py-3.5 rounded-2xl text-[14px] hover:bg-[#8e0d27] transition-all shadow-lg shadow-red-900/10">
+                            View Full Schedule
                         </button>
                     </div>
 
-                    {/* KARTU 6: MOST POPULAR TREATMENTS */}
-                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-50 flex-1 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-gray-200/50 cursor-pointer">
-                        <h2 className="text-lg font-bold text-gray-800 mb-6">Most Popular Treatments</h2>
-                        <div className="space-y-5">
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-[#FFE4E6] text-[#E17887] font-bold flex items-center justify-center">#1</div>
-                                <div>
-                                    <p className="font-bold text-gray-800 text-sm">Facial Rejuvenation</p>
-                                    <p className="text-xs text-gray-400 font-medium flex items-center gap-1 mt-1"><span className="text-yellow-400">★</span> (4.9) • 2,150 reviews</p>
+                    {/* POPULAR TREATMENTS */}
+                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
+                        <h2 className="text-[24px] font-extrabold text-[#202224] mb-6 text-center">Most Popular</h2>
+                        <div className="space-y-4">
+                            <div className="flex items-center justify-between p-4 bg-[#F5F6FA] rounded-2xl border border-gray-50">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-xl bg-[#B01030] text-white flex items-center justify-center font-bold">1</div>
+                                    <div>
+                                        <p className="font-bold text-[#202224] text-[14px]">Rhinoplasty</p>
+                                        <p className="text-[11px] text-gray-400 font-bold">45% Popularity</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-[#FFE4E6] text-[#E17887] font-bold flex items-center justify-center">#2</div>
-                                <div>
-                                    <p className="font-bold text-gray-800 text-sm">Laser Hair Removal</p>
-                                    <p className="text-xs text-gray-400 font-medium flex items-center gap-1 mt-1"><span className="text-yellow-400">★</span> (4.8) • 1,980 reviews</p>
-                                </div>
+                                <MdOutlineAutoAwesome className="text-[#B01030]" />
                             </div>
                         </div>
                     </div>

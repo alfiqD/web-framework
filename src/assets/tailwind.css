@@ -12,6 +12,13 @@
     src: url('/fonts/Poppins-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('./fonts/NunitoSans.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* 3. Daftarkan variabel ke tema */
 @theme {
     --font-barlow: "Barlow", sans-serif;

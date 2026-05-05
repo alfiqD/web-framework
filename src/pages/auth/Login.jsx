@@ -10,7 +10,7 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [dataForm, setDataForm] = useState({
-        email: "", // Berfungsi sebagai username untuk API dummyjson
+        email: "", 
         password: "",
     });
 
@@ -24,7 +24,6 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         setLoading(true);
         setError(""); 
 
@@ -38,69 +37,63 @@ export default function Login() {
                     setError(response.data.message);
                     return;
                 }
-                // Redirect ke dashboard jika login sukses
                 navigate("/");
             })
             .catch((err) => {
-                if (err.response) {
-                    setError(err.response.data.message || "An error occurred");
-                } else {
-                    setError(err.message || "An unknown error occurred");
-                }
+                setError(err.response?.data?.message || "Invalid username or password");
             })
             .finally(() => {
                 setLoading(false);
             });
     };
 
-    // Alert Error (Tema Merah Muda Pastel)
+    // Alert Error (Nuansa Merah Status Reject #EF3826)
     const errorInfo = error ? (
-        <div className="bg-[#FFF0F2] mb-6 p-4 text-sm font-semibold text-[#d06172] rounded-2xl border-l-4 border-[#E17887] flex items-center shadow-sm">
+        <div className="bg-[#FFF4F2] mb-6 p-4 text-[13px] font-bold text-[#EF3826] rounded-2xl border border-[#EF3826]/20 flex items-center shadow-sm animate-shake">
             <BsFillExclamationDiamondFill className="me-3 text-lg shrink-0" />
             <span>{error}</span>
         </div>
     ) : null;
 
-    // Alert Loading (Tema Mint Pastel)
+    // Alert Loading (Nuansa Biru/Mint Profesional)
     const loadingInfo = loading ? (
-        <div className="bg-[#EAFaf1] mb-6 p-4 text-sm font-semibold text-[#5fa389] rounded-2xl border-l-4 border-[#7BBEA5] flex items-center shadow-sm">
-            <ImSpinner2 className="me-3 animate-spin text-lg shrink-0" />
-            <span>Memproses kredensial, mohon tunggu...</span>
+        <div className="bg-[#F5F6FA] mb-6 p-4 text-[13px] font-bold text-[#202224] rounded-2xl border border-gray-100 flex items-center shadow-sm">
+            <ImSpinner2 className="me-3 animate-spin text-lg shrink-0 text-[#B01030]" />
+            <span>Authenticating credentials...</span>
         </div>
     ) : null;
 
     return (
-        <div className="px-2 md:px-6">
+        <div className="px-4 md:px-8">
             
-            {/* Header Form dengan Badge */}
+            {/* Header Form dengan Badge Brand */}
             <div className="text-left mb-10">
-                <span className="bg-[#FFE4E6] text-[#E17887] px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase mb-4 inline-block shadow-sm">
-                    ✨ Beauty Clinic Admin
+                <span className="bg-[#B01030]/10 text-[#B01030] px-3 py-1.5 rounded-lg text-[11px] font-extrabold tracking-wider uppercase mb-4 inline-block">
+                    ✨ JagoanData Admin
                 </span>
-                <h2 className="text-3xl font-extrabold text-gray-800 font-poppins mb-2 tracking-tight">
+                <h2 className="text-[32px] font-extrabold text-[#202224] leading-tight mb-2 tracking-tight">
                     Welcome Back.
                 </h2>
-                <p className="text-sm text-gray-400 font-medium">
-                    Please log in to manage your patients and schedules.
+                <p className="text-[14px] text-gray-400 font-semibold">
+                    Please log in to manage your medical records and schedules.
                 </p>
             </div>
 
             {errorInfo}
             {loadingInfo}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-6">
                 
-                {/* Input Email/Username dengan Icon di dalam */}
+                {/* Input Username */}
                 <div>
-                    <label className="block text-[12px] font-extrabold text-gray-500 mb-2 tracking-widest uppercase pl-1">
+                    <label className="block text-[12px] font-extrabold text-[#202224] mb-2 tracking-widest uppercase opacity-60">
                         Username
                     </label>
-                    <div className="relative flex items-center">
-                        <MdOutlinePersonOutline className="absolute left-5 text-gray-400 text-xl" />
+                    <div className="relative flex items-center group">
+                        <MdOutlinePersonOutline className="absolute left-5 text-gray-400 text-xl group-focus-within:text-[#B01030] transition-colors" />
                         <input
                             type="text"
-                            id="email"
-                            className="w-full pl-14 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl shadow-sm text-sm text-gray-800 placeholder-gray-300 outline-none transition-all duration-300 focus:bg-white focus:border-[#FCA5A5] focus:ring-2 focus:ring-[#FFE4E6]"
+                            className="w-full pl-14 pr-4 py-4 bg-[#F5F6FA] border border-gray-100 rounded-2xl text-[14px] font-semibold text-[#202224] placeholder-gray-300 outline-none transition-all duration-300 focus:bg-white focus:border-[#B01030] focus:ring-4 focus:ring-[#B01030]/5"
                             placeholder="e.g. emilys"
                             name="email"
                             value={dataForm.email}
@@ -110,23 +103,22 @@ export default function Login() {
                     </div>
                 </div>
                 
-                {/* Input Password dengan Icon di dalam */}
+                {/* Input Password */}
                 <div>
-                    <div className="flex justify-between items-center mb-2 pl-1 pr-1">
-                        <label className="block text-[12px] font-extrabold text-gray-500 tracking-widest uppercase">
+                    <div className="flex justify-between items-center mb-2">
+                        <label className="block text-[12px] font-extrabold text-[#202224] tracking-widest uppercase opacity-60">
                             Password
                         </label>
-                        <a href="#" className="text-[11px] font-bold text-[#7BBEA5] hover:text-[#5fa389] transition-colors">
+                        <a href="#" className="text-[12px] font-bold text-[#B01030] hover:underline transition-colors">
                             Forgot?
                         </a>
                     </div>
-                    <div className="relative flex items-center">
-                        <MdLockOutline className="absolute left-5 text-gray-400 text-xl" />
+                    <div className="relative flex items-center group">
+                        <MdLockOutline className="absolute left-5 text-gray-400 text-xl group-focus-within:text-[#B01030] transition-colors" />
                         <input
                             type="password"
-                            id="password"
-                            className="w-full pl-14 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl shadow-sm text-sm text-gray-800 placeholder-gray-300 outline-none transition-all duration-300 focus:bg-white focus:border-[#FCA5A5] focus:ring-2 focus:ring-[#FFE4E6]"
-                            placeholder="Enter your password"
+                            className="w-full pl-14 pr-4 py-4 bg-[#F5F6FA] border border-gray-100 rounded-2xl text-[14px] font-semibold text-[#202224] placeholder-gray-300 outline-none transition-all duration-300 focus:bg-white focus:border-[#B01030] focus:ring-4 focus:ring-[#B01030]/5"
+                            placeholder="••••••••"
                             name="password"
                             value={dataForm.password}
                             onChange={handleChange}
@@ -135,13 +127,15 @@ export default function Login() {
                     </div>
                 </div>
 
-                {/* Tombol Login */}
+                {/* Tombol Login - Warna Brand #B01030 */}
                 <button
                     type="submit"
                     disabled={loading}
-                    className="w-full mt-6 bg-[#E17887] hover:bg-[#d06172] text-white font-bold py-4 px-4 rounded-2xl transition-all duration-300 shadow-lg shadow-pink-200/60 hover:-translate-y-1 flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none"
+                    className="w-full mt-4 bg-[#B01030] hover:bg-[#8e0d27] text-white font-extrabold py-4 px-4 rounded-2xl transition-all duration-300 shadow-lg shadow-red-900/10 hover:-translate-y-1 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                    <span>{loading ? "Authenticating..." : "Sign In to Dashboard"}</span>
+                    <span className="text-[14px] uppercase tracking-wider">
+                        {loading ? "Authenticating..." : "Sign In to Dashboard"}
+                    </span>
                     {!loading && <MdArrowForward className="text-xl" />}
                 </button>
             </form>
