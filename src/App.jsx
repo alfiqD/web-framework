@@ -39,6 +39,8 @@ const Login = React.lazy(() => import("./pages/auth/Login"))
 const Register = React.lazy(() => import("./pages/auth/Register"))
 const Forgot = React.lazy(() => import("./pages/auth/Forgot"))
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"))
+const JenisMakeup = React.lazy(() => import("./pages/JenisMakeup"))
+const MakeupDetail = React.lazy(() => import("./pages/MakeupDetail"))
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
+        <Route path="/jenismakeup" element={<JenisMakeup />} />
+        <Route path="/jenismakeup/:id" element={<MakeupDetail/>} />
 
         <Route path="/400" element={<ErrorPage errorCode="400" title={<>Oops! <br /> Bad Request!</>} />} />
         <Route path="/401" element={<ErrorPage errorCode="401" title={<>Hold Up! <br /> Unauthorized!</>} />} />
