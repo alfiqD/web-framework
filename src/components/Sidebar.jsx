@@ -24,7 +24,7 @@ export default function Sidebar() {
     { id: 'menu-3', name: 'Customers', path: '/customers', icon: <MdPeople className="mr-4 text-xl" /> },
     { id: 'menu-4', name: 'Analytics', path: '/analytics', icon: <MdBarChart className="mr-4 text-xl" /> },
     { id: 'menu-5', name: 'Jenis Makeup', path: '/jenismakeup', icon: <MdOutlinePeopleAlt className="mr-4 text-xl" /> },
-    { id: 'menu-6', name: 'Doctors', path: '/doctors', icon: <MdOutlineMedicalServices className="mr-4 text-xl" /> },
+    { id: 'menu-6', name: 'Components', path: '/components', icon: <MdOutlineMedicalServices className="mr-4 text-xl" /> },
     { id: 'menu-7', name: 'Appointments', path: '/appointments', icon: <MdOutlineEventNote className="mr-4 text-xl" /> },
     { id: 'menu-8', name: 'Surgery Schedule', path: '/surgery-schedule', icon: <MdOutlineCalendarToday className="mr-4 text-xl" /> },
     { id: 'menu-9', name: 'Treatments', path: '/treatments', icon: <MdOutlineSpa className="mr-4 text-xl" /> },
