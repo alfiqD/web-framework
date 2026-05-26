@@ -40,10 +40,6 @@ export default function Components() {
         <p className="text-[#B01030] font-semibold mt-2">Tema: Byutie Clinic</p>
       </div>
 
-      {/* DI SINI PERUBAHANNYA: 
-          Menggunakan grid-cols-1 untuk layar kecil/zoom in 
-          Menggunakan lg:grid-cols-2 untuk layar besar/zoom out (menjadi 2x3) 
-          max-w-[1400px] agar bisa melebar penuh */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-[1400px] mx-auto items-start">
         
         {/* 1. BASIC COMPONENT */}
