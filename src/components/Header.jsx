@@ -71,7 +71,7 @@ export default function Header() {
                         alt="Profile" 
                     />
                     <div className="hidden lg:flex flex-col">
-                        <span className="text-[14px] font-bold text-[#202224] leading-tight">Moni Roy</span>
+                        <span className="text-[14px] font-bold text-[#202224] leading-tight">Alfiq Debriliant</span>
                         <span className="text-[12px] font-semibold text-gray-500">Admin</span>
                     </div>
                     {/* Icon Chevron di dalam lingkaran kecil sesuai gambar */}

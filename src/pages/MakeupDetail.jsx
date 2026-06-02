@@ -50,11 +50,11 @@ export default function MakeupDetail() {
     // Fungsi Helper Warna Badge Stok
     const getStockBadge = (stock) => {
         if (stock === 0) {
-            return <span className="bg-[#fde1e1] text-[#EF3826] px-4 py-2 rounded-xl text-[13px] font-extrabold shadow-sm">Out of Stock (0)</span>;
+            return <span className="bg-[#fde1e1] text-[#EF3826] px-4 py-1.5 rounded-xl text-[12px] font-extrabold shadow-sm">Out of Stock (0)</span>;
         } else if (stock <= 20) {
-            return <span className="bg-[#ffe9d5] text-[#FFA756] px-4 py-2 rounded-xl text-[13px] font-extrabold shadow-sm">Low Stock ({stock} items)</span>;
+            return <span className="bg-[#ffe9d5] text-[#FFA756] px-4 py-1.5 rounded-xl text-[12px] font-extrabold shadow-sm">Low Stock ({stock} items)</span>;
         } else {
-            return <span className="bg-[#ccf1eb] text-[#00B69B] px-4 py-2 rounded-xl text-[13px] font-extrabold shadow-sm">In Stock ({stock} items)</span>;
+            return <span className="bg-[#ccf1eb] text-[#00B69B] px-4 py-1.5 rounded-xl text-[12px] font-extrabold shadow-sm">In Stock ({stock} items)</span>;
         }
     };
 
@@ -64,26 +64,27 @@ export default function MakeupDetail() {
             <PageHeader title="Product Details" breadcrumb={["Dashboard", "Jenis Makeup", productName]}>
                 <button 
                     onClick={() => navigate(-1)}
-                    className="bg-white text-gray-600 border border-gray-200 px-5 py-2.5 rounded-xl hover:bg-gray-50 transition-all font-bold shadow-sm text-sm flex items-center gap-2 active:scale-95"
+                    className="bg-white text-gray-600 border border-gray-200 px-4 py-2 rounded-xl hover:bg-gray-50 transition-all font-bold shadow-sm text-sm flex items-center gap-2 active:scale-95"
                 >
                     <MdOutlineArrowBack size={18} /> Back to List
                 </button>
             </PageHeader>
 
-            <div className="mx-8 bg-white rounded-[32px] shadow-sm border border-gray-100 overflow-hidden">
-                <div className="grid grid-cols-1 lg:grid-cols-2 p-8 lg:p-12 gap-12">
+            {/* MENGGUNAKAN MAX-W-5XL AGAR TIDAK TERLALU MELEBAR */}
+            <div className="mx-8 max-w-5xl bg-white rounded-[24px] shadow-sm border border-gray-100 overflow-hidden">
+                {/* MENGUBAH PROPORSIONAL GRID (5 Kolom Gambar, 7 Kolom Teks) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 p-6 lg:p-8 gap-8 lg:gap-10 items-start">
                     
-                    {/* KOLOM KIRI: GAMBAR PRODUK */}
-                    <div className="flex flex-col gap-4">
-                        <div className="w-full aspect-square bg-gray-50 rounded-3xl overflow-hidden border border-gray-100 shadow-inner relative group flex items-center justify-center">
-                           <img
-    // Kita arahkan src-nya ke folder public/img/imgjenismakeup/
-    src={product.image ? `/img/imgjenismakeup/${product.image}` : "https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?q=80&w=800&auto=format&fit=crop"}
-    alt={productName}
-    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-/>
-                            <div className="absolute top-4 left-4">
-                                <span className="bg-white/90 backdrop-blur-sm text-[#B01030] px-4 py-2 rounded-xl text-xs font-extrabold shadow-sm uppercase tracking-wider">
+                    {/* KOLOM KIRI: GAMBAR PRODUK (Lebih Ringkas) */}
+                    <div className="lg:col-span-5 flex flex-col gap-4">
+                        <div className="w-full aspect-[4/4] lg:aspect-[4/5] bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-inner relative group flex items-center justify-center">
+                            <img
+                                src={product.image ? `/img/imgjenismakeup/${product.image}` : "https://images.unsplash.com/photo-1627384113743-6bd5a479fffd?q=80&w=800&auto=format&fit=crop"}
+                                alt={productName}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute top-3 left-3">
+                                <span className="bg-white/90 backdrop-blur-sm text-[#B01030] px-3 py-1.5 rounded-lg text-[11px] font-extrabold shadow-sm uppercase tracking-wider">
                                     {product.category}
                                 </span>
                             </div>
@@ -91,54 +92,54 @@ export default function MakeupDetail() {
                     </div>
 
                     {/* KOLOM KANAN: DETAIL INFO */}
-                    <div className="flex flex-col justify-center">
+                    <div className="lg:col-span-7 flex flex-col h-full py-2">
                         
                         {/* Brand & Code */}
-                        <div className="flex items-center gap-4 text-sm font-bold text-gray-400 uppercase tracking-widest mb-3">
+                        <div className="flex items-center gap-3 text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
                             <span className="flex items-center gap-1.5"><MdBrandingWatermark /> {product.brand}</span>
                             <span>•</span>
                             <span className="flex items-center gap-1.5"><MdLocalOffer /> CODE: {product.code}</span>
                         </div>
 
-                        {/* Title */}
-                        <h1 className="text-4xl lg:text-5xl font-extrabold text-[#202224] leading-tight mb-6">
+                        {/* Title (Diperkecil sedikit agar tidak terlalu raksasa) */}
+                        <h1 className="text-3xl lg:text-4xl font-extrabold text-[#202224] leading-tight mb-5">
                             {productName}
                         </h1>
 
                         {/* Price */}
-                        <div className="mb-8">
-                            <p className="text-gray-500 text-sm font-bold mb-1 uppercase tracking-wide">Retail Price</p>
-                            <p className="text-4xl font-extrabold text-[#B01030]">
+                        <div className="mb-6">
+                            <p className="text-gray-500 text-xs font-bold mb-1 uppercase tracking-wide">Retail Price</p>
+                            <p className="text-3xl font-extrabold text-[#B01030]">
                                 {formatRupiah(product.price)}
                             </p>
                         </div>
 
-                        <hr className="border-gray-100 mb-8" />
+                        <hr className="border-gray-100 mb-6" />
 
                         {/* Inventory Details */}
-                        <div className="mb-10">
-                            <p className="text-gray-500 text-sm font-bold mb-4 uppercase tracking-wide">Inventory Status</p>
+                        <div className="mb-8">
+                            <p className="text-gray-500 text-xs font-bold mb-3 uppercase tracking-wide">Inventory Status</p>
                             <div className="flex items-center gap-4">
                                 {getStockBadge(product.stock)}
                                 
                                 {product.stock > 0 && (
-                                    <span className="text-sm font-bold text-gray-400 flex items-center gap-1">
+                                    <span className="text-[13px] font-bold text-gray-400 flex items-center gap-1">
                                         <MdOutlineInventory2 /> Ready to ship
                                     </span>
                                 )}
                             </div>
                         </div>
 
-                        {/* Action Buttons (CRM Tools) */}
-                        <div className="flex flex-wrap gap-4 mt-auto">
-                            <button className="flex-1 bg-[#B01030] text-white px-6 py-4 rounded-2xl font-bold shadow-lg shadow-red-900/10 hover:bg-[#8e0d27] transition-all flex items-center justify-center gap-2 active:scale-95 text-sm">
-                                <MdAddShoppingCart size={20} /> Update Stock
+                        {/* Action Buttons (CRM Tools) - Padding diperkecil sedikit */}
+                        <div className="flex flex-wrap gap-3 mt-auto pt-4">
+                            <button className="flex-1 bg-[#B01030] text-white px-5 py-3 rounded-xl font-bold shadow-md shadow-red-900/10 hover:bg-[#8e0d27] transition-all flex items-center justify-center gap-2 active:scale-95 text-[13px]">
+                                <MdAddShoppingCart size={18} /> Update Stock
                             </button>
-                            <button className="bg-gray-100 text-gray-600 px-6 py-4 rounded-2xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2 active:scale-95 text-sm">
-                                <MdEdit size={20} /> Edit
+                            <button className="bg-gray-100 text-gray-600 px-5 py-3 rounded-xl font-bold hover:bg-gray-200 transition-all flex items-center justify-center gap-2 active:scale-95 text-[13px]">
+                                <MdEdit size={18} /> Edit
                             </button>
-                            <button className="bg-[#fde1e1] text-[#EF3826] px-6 py-4 rounded-2xl font-bold hover:bg-[#fbd3d3] transition-all flex items-center justify-center gap-2 active:scale-95 text-sm">
-                                <MdDeleteOutline size={20} />
+                            <button className="bg-[#fde1e1] text-[#EF3826] px-5 py-3 rounded-xl font-bold hover:bg-[#fbd3d3] transition-all flex items-center justify-center gap-2 active:scale-95 text-[13px]">
+                                <MdDeleteOutline size={18} />
                             </button>
                         </div>
 
