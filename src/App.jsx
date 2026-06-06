@@ -29,6 +29,7 @@ import { Route, Routes } from 'react-router-dom';
 // import AuthLayout from './layouts/AuthLayout';
 import React from 'react';
 import Loading from './components/Loading';
+import HooksDemo from './pages/HooksDemo';
 
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"))
@@ -44,6 +45,7 @@ const JenisMakeup = React.lazy(() => import("./pages/JenisMakeup"))
 const MakeupDetail = React.lazy(() => import("./pages/MakeupDetail"))
 const Components = React.lazy(() => import("./pages/Components"))
 const Fiturshadcnui = React.lazy(() => import("./pages/fiturShadcnui"))
+const Hooksdemo = React.lazy(() => import("./pages/HooksDemo"))
 
 function App() {
   return (
@@ -58,6 +60,7 @@ function App() {
         <Route path="/jenismakeup/:id" element={<MakeupDetail/>} />
         <Route path="/components" element={<Components/>} />
         <Route path="/fiturshadcnui" element={<Fiturshadcnui/>} />
+        <Route path="/hooksdemo" element={<HooksDemo/>} />
 
         <Route path="/400" element={<ErrorPage errorCode="400" title={<>Oops! <br /> Bad Request!</>} />} />
         <Route path="/401" element={<ErrorPage errorCode="401" title={<>Hold Up! <br /> Unauthorized!</>} />} />
