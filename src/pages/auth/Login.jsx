@@ -1,144 +1,160 @@
-import axios from "axios";
-import { useState } from "react";
-import { BsFillExclamationDiamondFill } from "react-icons/bs";
-import { ImSpinner2 } from "react-icons/im";
-import { useNavigate } from "react-router-dom";
-import { MdOutlinePersonOutline, MdLockOutline, MdArrowForward } from "react-icons/md";
+import React, { useState, useRef, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { supabase } from '../../config/supabaseClient'; 
+import { rolesData } from '../../config/rolesConfig'; // Import data role bersama
+import { FiMail, FiLock, FiShield, FiEye, FiEyeOff, FiChevronDown } from 'react-icons/fi';
 
 export default function Login() {
-    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [role, setRole] = useState(rolesData[0].value); // Default ke role pertama
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [dataForm, setDataForm] = useState({
-        email: "", 
-        password: "",
-    });
+    const [errorMsg, setErrorMsg] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
+    const navigate = useNavigate();
+    const dropdownRef = useRef(null); // Ref untuk menutup dropdown saat klik di luar
 
-    const handleChange = (evt) => {
-        const { name, value } = evt.target;
-        setDataForm({
-            ...dataForm,
-            [name]: value,
-        });
-    };
-
-    const handleSubmit = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
-        setError(""); 
+        setErrorMsg('');
 
-        axios
-            .post("https://dummyjson.com/user/login", {
-                username: dataForm.email,
-                password: dataForm.password,
-            })
-            .then((response) => {
-                if (response.status !== 200) {
-                    setError(response.data.message);
-                    return;
-                }
-                navigate("/");
-            })
-            .catch((err) => {
-                setError(err.response?.data?.message || "Invalid username or password");
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        // Memvalidasi data terhadap data tersimpan di tabel 'users'
+        const { data, error } = await supabase
+            .from('users')
+            .select('*')
+            .eq('email', email)
+            .eq('password', password)
+            .eq('role', role);
+
+        if (error || data.length === 0) {
+            setErrorMsg("Akses ditolak: Data akun atau Role tidak sesuai.");
+        } else {
+            // Sukses? Arahkan ke halaman utama dashboard
+            navigate('/'); 
+        }
+        setLoading(false);
     };
 
-    // Alert Error (Nuansa Merah Status Reject #EF3826)
-    const errorInfo = error ? (
-        <div className="bg-[#FFF4F2] mb-6 p-4 text-[13px] font-bold text-[#EF3826] rounded-2xl border border-[#EF3826]/20 flex items-center shadow-sm animate-shake">
-            <BsFillExclamationDiamondFill className="me-3 text-lg shrink-0" />
-            <span>{error}</span>
-        </div>
-    ) : null;
+    const handleRoleSelect = (selectedRole) => {
+        setRole(selectedRole);
+        setIsDropdownOpen(false);
+    };
 
-    // Alert Loading (Nuansa Biru/Mint Profesional)
-    const loadingInfo = loading ? (
-        <div className="bg-[#F5F6FA] mb-6 p-4 text-[13px] font-bold text-[#202224] rounded-2xl border border-gray-100 flex items-center shadow-sm">
-            <ImSpinner2 className="me-3 animate-spin text-lg shrink-0 text-[#B01030]" />
-            <span>Authenticating credentials...</span>
-        </div>
-    ) : null;
+    // Fungsi untuk menutup dropdown saat klik di luar elemen dropdown
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    // Mencari data role yang sedang dipilih untuk ditampilkan di form
+    const currentRoleData = rolesData.find(r => r.value === role);
 
     return (
-        <div className="px-4 md:px-8">
-            
-            {/* Header Form dengan Badge Brand */}
-            <div className="text-left mb-10">
-                <span className="bg-[#B01030]/10 text-[#B01030] px-3 py-1.5 rounded-lg text-[11px] font-extrabold tracking-wider uppercase mb-4 inline-block">
-                    ✨ JagoanData Admin
-                </span>
-                <h2 className="text-[32px] font-extrabold text-[#202224] leading-tight mb-2 tracking-tight">
-                    Welcome Back.
-                </h2>
-                <p className="text-[14px] text-gray-400 font-semibold">
-                    Please log in to manage your medical records and schedules.
-                </p>
+        <div className="w-full">
+            <div className="text-center mb-8">
+                <h2 className="text-2xl font-black text-gray-900 tracking-tight mb-1">Welcome Back</h2>
+                <p className="text-gray-500 text-sm font-medium">Masuk untuk mengelola sistem Byutie</p>
             </div>
 
-            {errorInfo}
-            {loadingInfo}
+            {errorMsg && <div className="bg-red-50/80 border border-red-200 text-red-600 p-4 rounded-2xl text-sm mb-6 font-bold flex items-center gap-2 shadow-sm"><FiShield className="text-lg"/>{errorMsg}</div>}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-                
-                {/* Input Username */}
+            <form onSubmit={handleLogin} className="space-y-5">
+                {/* Email Input */}
                 <div>
-                    <label className="block text-[12px] font-extrabold text-[#202224] mb-2 tracking-widest uppercase opacity-60">
-                        Username
-                    </label>
-                    <div className="relative flex items-center group">
-                        <MdOutlinePersonOutline className="absolute left-5 text-gray-400 text-xl group-focus-within:text-[#B01030] transition-colors" />
-                        <input
-                            type="text"
-                            className="w-full pl-14 pr-4 py-4 bg-[#F5F6FA] border border-gray-100 rounded-2xl text-[14px] font-semibold text-[#202224] placeholder-gray-300 outline-none transition-all duration-300 focus:bg-white focus:border-[#B01030] focus:ring-4 focus:ring-[#B01030]/5"
-                            placeholder="e.g. emilys"
-                            name="email"
-                            value={dataForm.email}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                </div>
-                
-                {/* Input Password */}
-                <div>
-                    <div className="flex justify-between items-center mb-2">
-                        <label className="block text-[12px] font-extrabold text-[#202224] tracking-widest uppercase opacity-60">
-                            Password
-                        </label>
-                        <a href="#" className="text-[12px] font-bold text-[#B01030] hover:underline transition-colors">
-                            Forgot?
-                        </a>
-                    </div>
-                    <div className="relative flex items-center group">
-                        <MdLockOutline className="absolute left-5 text-gray-400 text-xl group-focus-within:text-[#B01030] transition-colors" />
-                        <input
-                            type="password"
-                            className="w-full pl-14 pr-4 py-4 bg-[#F5F6FA] border border-gray-100 rounded-2xl text-[14px] font-semibold text-[#202224] placeholder-gray-300 outline-none transition-all duration-300 focus:bg-white focus:border-[#B01030] focus:ring-4 focus:ring-[#B01030]/5"
-                            placeholder="••••••••"
-                            name="password"
-                            value={dataForm.password}
-                            onChange={handleChange}
-                            required
+                    <label className="block text-xs font-black text-gray-700 mb-1.5 uppercase tracking-wider ml-1">Email Address</label>
+                    <div className="relative flex items-center">
+                        <FiMail className="absolute left-4 text-gray-400 text-lg" />
+                        <input 
+                            type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
+                            className="w-full pl-12 pr-4 py-3.5 bg-gray-50/50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-[#B01030]/10 focus:border-[#B01030] transition-all font-semibold text-sm text-gray-800 placeholder-gray-400 shadow-sm"
+                            placeholder="admin@byutie.com"
                         />
                     </div>
                 </div>
 
-                {/* Tombol Login - Warna Brand #B01030 */}
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full mt-4 bg-[#B01030] hover:bg-[#8e0d27] text-white font-extrabold py-4 px-4 rounded-2xl transition-all duration-300 shadow-lg shadow-red-900/10 hover:-translate-y-1 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                >
-                    <span className="text-[14px] uppercase tracking-wider">
-                        {loading ? "Authenticating..." : "Sign In to Dashboard"}
+                {/* Password Input */}
+                <div>
+                    <div className="flex justify-between items-center mb-1.5 ml-1 mr-1">
+                        <label className="block text-xs font-black text-gray-700 uppercase tracking-wider">Password</label>
+                        <Link to="/forgot" className="text-xs font-extrabold text-[#B01030] hover:underline">Lupa Sandi?</Link>
+                    </div>
+                    <div className="relative flex items-center">
+                        <FiLock className="absolute left-4 text-gray-400 text-lg" />
+                        <input 
+                            type={showPassword ? "text" : "password"} required value={password} onChange={(e) => setPassword(e.target.value)}
+                            className="w-full pl-12 pr-12 py-3.5 bg-gray-50/50 border border-gray-200 rounded-2xl outline-none focus:bg-white focus:ring-4 focus:ring-[#B01030]/10 focus:border-[#B01030] transition-all font-semibold text-sm text-gray-800 placeholder-gray-400 shadow-sm"
+                            placeholder="Masukkan kata sandi"
+                        />
+                        <button 
+                            type="button" onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-4 text-gray-400 hover:text-[#B01030] transition-colors focus:outline-none"
+                        >
+                            {showPassword ? <FiEyeOff className="text-lg" /> : <FiEye className="text-lg" />}
+                        </button>
+                    </div>
+                </div>
+
+                {/* Premium Custom Role Dropdown */}
+                <div className="relative" ref={dropdownRef}>
+                    <label className="block text-xs font-black text-gray-700 mb-1.5 uppercase tracking-wider ml-1">Masuk Sebagai</label>
+                    <div 
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className={`w-full pl-12 pr-4 py-3.5 bg-gray-50/50 border ${isDropdownOpen ? 'border-[#B01030] ring-4 ring-[#B01030]/10 bg-white' : 'border-gray-200'} rounded-2xl cursor-pointer transition-all flex items-center justify-between font-bold text-[#B01030] text-sm relative shadow-sm`}
+                    >
+                        <FiShield className="absolute left-4 text-[#B01030] text-lg" />
+                        <span>{currentRoleData.label}</span>
+                        <FiChevronDown className={`text-gray-500 text-lg transition-transform duration-300 ${isDropdownOpen ? 'rotate-180 text-[#B01030]' : ''}`} />
+                    </div>
+
+                    {/* Dropdown Menu Items - Premium Card Layout */}
+                    {isDropdownOpen && (
+                        <div className="absolute z-50 w-full mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl overflow-y-auto max-h-72 animate-in fade-in slide-in-from-top-2 duration-200">
+                            {rolesData.map((roleItem, index) => (
+                                <div key={roleItem.value}>
+                                    <div 
+                                        onClick={() => handleRoleSelect(roleItem.value)}
+                                        className={`flex items-center gap-3 p-4 cursor-pointer transition-colors ${role === roleItem.value ? 'bg-red-50 text-[#B01030]' : 'hover:bg-gray-50 text-gray-700'}`}
+                                    >
+                                        <div className={`p-2.5 rounded-xl ${role === roleItem.value ? 'bg-[#B01030] text-white' : 'bg-gray-100 text-gray-500'}`}>
+                                            {roleItem.icon}
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="font-extrabold text-sm tracking-tight">{roleItem.label}</p>
+                                            <p className="text-xs text-gray-500 font-medium">{roleItem.description}</p>
+                                        </div>
+                                        {role === roleItem.value && <div className="w-2 h-2 rounded-full bg-[#B01030]"></div>}
+                                    </div>
+                                    {index < rolesData.length - 1 && <div className="h-[1px] w-full bg-gray-50"></div>}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                
+                {/* Submit Button */}
+                <button type="submit" disabled={loading} className="w-full relative group overflow-hidden bg-gradient-to-r from-[#B01030] to-[#E53935] text-white py-4 rounded-2xl font-extrabold transition-all hover:shadow-[0_10px_25px_-8px_rgba(176,16,48,0.6)] hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0 disabled:opacity-70 mt-6 text-sm shadow-md">
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                        {loading ? (
+                            <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div> Autentikasi...</>
+                        ) : 'Sign In'}
                     </span>
-                    {!loading && <MdArrowForward className="text-xl" />}
                 </button>
             </form>
+
+            <div className="mt-8 pt-6 border-t border-gray-100 text-center">
+                <p className="text-sm text-gray-500 font-medium">
+                    Belum punya akun staf? <Link to="/register" className="text-[#B01030] font-extrabold hover:text-[#8e0d27] hover:underline transition-colors ml-1">Daftar sekarang</Link>
+                </p>
+            </div>
         </div>
     );
 }
