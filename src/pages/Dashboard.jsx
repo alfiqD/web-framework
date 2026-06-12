@@ -17,9 +17,9 @@ export default function Dashboard() {
             
             {/* --- PAGE HEADER --- */}
             <PageHeader title="Dashboard" breadcrumb={["Dashboard"]}>
-                <button className="bg-[#B01030] text-white px-5 py-2.5 rounded-xl hover:bg-[#8e0d27] transition-all font-bold shadow-lg shadow-red-900/10 text-sm flex items-center gap-2">
+                {/* <button className="bg-[#B01030] text-white px-5 py-2.5 rounded-xl hover:bg-[#8e0d27] transition-all font-bold shadow-lg shadow-red-900/10 text-sm flex items-center gap-2">
                     <MdOutlineAutoAwesome /> + Add Order
-                </button>
+                </button> */}
             </PageHeader>
 
             {/* --- TOP ROW: 4 STATISTIC CARDS --- */}

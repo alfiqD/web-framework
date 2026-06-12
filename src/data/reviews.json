@@ -1,0 +1,17 @@
+[
+    { "id": 1, "customer": "Alya Rahma", "rating": 5, "comment": "Produknya bagus banget, pengemasan rapi dan aman sampai tujuan!", "date": "12 Juni 2026" },
+    { "id": 2, "customer": "Budi Santoso", "rating": 4, "comment": "Pengiriman cepat, tapi kardusnya agak penyok sedikit. Tapi isi aman.", "date": "11 Juni 2026" },
+    { "id": 3, "customer": "Clara Shinta", "rating": 5, "comment": "Layanan CS sangat ramah dan membantu saat saya tanya stok.", "date": "10 Juni 2026" },
+    { "id": 4, "customer": "Dian Sastro", "rating": 3, "comment": "Barang oke, cuma kurirnya agak lambat.", "date": "09 Juni 2026" },
+    { "id": 5, "customer": "Elma Theana", "rating": 5, "comment": "Suka banget sama aroma serumnya! Auto langganan.", "date": "08 Juni 2026" },
+    { "id": 6, "customer": "Farid Ramadhan", "rating": 5, "comment": "Mantap! Efeknya kelihatan dalam seminggu.", "date": "07 Juni 2026" },
+    { "id": 7, "customer": "Gita Savitri", "rating": 4, "comment": "Warna lipsticknya cantik sekali, sesuai ekspektasi.", "date": "06 Juni 2026" },
+    { "id": 8, "customer": "Hafiz Pratama", "rating": 2, "comment": "Produk kurang cocok di kulit saya, agak kering.", "date": "05 Juni 2026" },
+    { "id": 9, "customer": "Indah Permata", "rating": 5, "comment": "Ini pembelian ke-3 saya, selalu puas!", "date": "04 Juni 2026" },
+    { "id": 10, "customer": "Joko Anwar", "rating": 4, "comment": "Kualitas sangat baik dengan harga yang masuk akal.", "date": "03 Juni 2026" },
+    { "id": 11, "customer": "Kirana Laras", "rating": 5, "comment": "Packingnya super aman, pake bubble wrap tebal.", "date": "02 Juni 2026" },
+    { "id": 12, "customer": "Lutfi Hakim", "rating": 1, "comment": "Barang datang tidak sesuai pesanan, sangat kecewa.", "date": "01 Juni 2026" },
+    { "id": 13, "customer": "Melati Sukma", "rating": 4, "comment": "Bagus, tapi varian warna yang diinginkan kosong.", "date": "31 Mei 2026" },
+    { "id": 14, "customer": "Nanda Putri", "rating": 5, "comment": "Sangat rekomended untuk yang cari skincare organik.", "date": "30 Mei 2026" },
+    { "id": 15, "customer": "Oza Gistrada", "rating": 5, "comment": "Respon seller cepat dan sangat informatif.", "date": "29 Mei 2026" }
+]

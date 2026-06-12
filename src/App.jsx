@@ -30,6 +30,11 @@ import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Loading from './components/Loading';
 import HooksDemo from './pages/HooksDemo';
+import Messages from './pages/Messages';
+import Reviews from './pages/Reviews';
+import Payments from './pages/Payments';
+import Treatments from './pages/Treatments';
+import Suppliers from './pages/Suppliers';
 
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"))
@@ -46,6 +51,11 @@ const MakeupDetail = React.lazy(() => import("./pages/MakeupDetail"))
 const Components = React.lazy(() => import("./pages/Components"))
 const Fiturshadcnui = React.lazy(() => import("./pages/fiturShadcnui"))
 const Hooksdemo = React.lazy(() => import("./pages/HooksDemo"))
+const Message = React.lazy(() => import("./pages/Messages"))
+const Review = React.lazy(() => import("./pages/Reviews"))
+const Payment = React.lazy(() => import("./pages/Payments"))
+const Treatment = React.lazy(() => import("./pages/Treatments"))
+const Supplier = React.lazy(() => import("./pages/Suppliers"))
 
 function App() {
   return (
@@ -61,6 +71,11 @@ function App() {
         <Route path="/components" element={<Components/>} />
         <Route path="/fiturshadcnui" element={<Fiturshadcnui/>} />
         <Route path="/hooksdemo" element={<HooksDemo/>} />
+        <Route path="/messages" element={<Messages/>} />
+        <Route path="/reviews" element={<Reviews/>} />
+        <Route path="/payments" element={<Payments/>} />
+        <Route path="/treatments" element={<Treatments/>} />
+        <Route path="/suppliers" element={<Suppliers/>} />
 
         <Route path="/400" element={<ErrorPage errorCode="400" title={<>Oops! <br /> Bad Request!</>} />} />
         <Route path="/401" element={<ErrorPage errorCode="401" title={<>Hold Up! <br /> Unauthorized!</>} />} />
