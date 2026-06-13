@@ -12,7 +12,10 @@ import {
   MdOutlinePayment, 
   MdOutlineMessage,
   MdOutlineAutoAwesome,
-  MdLogout
+  MdLogout,
+  MdTrendingDown, // <-- Tambahan Import
+  MdDoneAll,      // <-- Tambahan Import
+  MdBusiness      // <-- Tambahan Import untuk Suppliers
 } from "react-icons/md";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -37,6 +40,10 @@ export default function Sidebar() {
     { id: 'menu-10', name: 'Reviews', path: '/reviews', icon: <MdOutlineStarBorder className="mr-4 text-xl" /> },
     { id: 'menu-11', name: 'Payments', path: '/payments', icon: <MdOutlinePayment className="mr-4 text-xl" /> },
     { id: 'menu-12', name: 'Messages', path: '/messages', icon: <MdOutlineMessage className="mr-4 text-xl" />, badge: 6 },
+    // Di array mainMenus (tambahkan sesuai kategorinya)
+    { id: 'menu-14', name: 'Expenses', path: '/expenses', icon: <MdTrendingDown className="mr-4 text-xl" /> },
+    { id: 'menu-15', name: 'Retention', path: '/retention', icon: <MdDoneAll className="mr-4 text-xl" /> },
+    { id: 'menu-16', name: 'Staff Schedule', path: '/staff', icon: <MdOutlinePeopleAlt className="mr-4 text-xl" /> },
   ];
 
   // --- KELOMPOK 2: UI Tools ---

@@ -35,6 +35,7 @@ import Reviews from './pages/Reviews';
 import Payments from './pages/Payments';
 import Treatments from './pages/Treatments';
 import Suppliers from './pages/Suppliers';
+import Expenses from './pages/Expenses';
 
 
 const Dashboard = React.lazy(() => import("./pages/Dashboard"))
@@ -56,6 +57,9 @@ const Review = React.lazy(() => import("./pages/Reviews"))
 const Payment = React.lazy(() => import("./pages/Payments"))
 const Treatment = React.lazy(() => import("./pages/Treatments"))
 const Supplier = React.lazy(() => import("./pages/Suppliers"))
+const Expense = React.lazy(() => import("./pages/Expenses"))
+const Staff = React.lazy(() => import("./pages/Staff"))
+const Retention = React.lazy(() => import("./pages/Retention"))
 
 function App() {
   return (
@@ -76,6 +80,9 @@ function App() {
         <Route path="/payments" element={<Payments/>} />
         <Route path="/treatments" element={<Treatments/>} />
         <Route path="/suppliers" element={<Suppliers/>} />
+        <Route path="/expenses" element={<Expenses/>} />
+        <Route path="/staff" element={<Staff />} />
+        <Route path="/retention" element={<Retention />} />
 
         <Route path="/400" element={<ErrorPage errorCode="400" title={<>Oops! <br /> Bad Request!</>} />} />
         <Route path="/401" element={<ErrorPage errorCode="401" title={<>Hold Up! <br /> Unauthorized!</>} />} />
