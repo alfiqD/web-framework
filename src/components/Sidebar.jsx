@@ -44,6 +44,7 @@ export default function Sidebar() {
     { id: 'menu-14', name: 'Expenses', path: '/expenses', icon: <MdTrendingDown className="mr-4 text-xl" /> },
     { id: 'menu-15', name: 'Retention', path: '/retention', icon: <MdDoneAll className="mr-4 text-xl" /> },
     { id: 'menu-16', name: 'Staff Schedule', path: '/staff', icon: <MdOutlinePeopleAlt className="mr-4 text-xl" /> },
+    { id: 'menu-17', name: 'User Management', path: '/usermanagement', icon: <MdOutlinePeopleAlt className="mr-4 text-xl" /> },
   ];
 
   // --- KELOMPOK 2: UI Tools ---
