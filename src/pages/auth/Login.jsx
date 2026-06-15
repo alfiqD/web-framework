@@ -32,7 +32,7 @@ export default function Login() {
             setErrorMsg("Akses ditolak: Data akun atau Role tidak sesuai.");
         } else {
             // Sukses? Arahkan ke halaman utama dashboard
-            navigate('/'); 
+            navigate('/dashboard'); 
         }
         setLoading(false);
     };
@@ -152,7 +152,7 @@ export default function Login() {
 
             <div className="mt-8 pt-6 border-t border-gray-100 text-center">
                 <p className="text-sm text-gray-500 font-medium">
-                    Belum punya akun staf? <Link to="/register" className="text-[#B01030] font-extrabold hover:text-[#8e0d27] hover:underline transition-colors ml-1">Daftar sekarang</Link>
+                    Belum punya akun staf? <Link to="/admin-register" className="text-[#B01030] font-extrabold hover:text-[#8e0d27] hover:underline transition-colors ml-1">Daftar sekarang</Link>
                 </p>
             </div>
         </div>

@@ -150,7 +150,7 @@ export default function Register() {
 
             <div className="mt-8 pt-6 border-t border-gray-100 text-center">
                 <p className="text-sm text-gray-500 font-medium">
-                    Sudah memiliki akun staf? <Link to="/login" className="text-[#B01030] font-extrabold hover:text-[#8e0d27] hover:underline transition-colors ml-1">Masuk di sini</Link>
+                    Sudah memiliki akun staf? <Link to="/admin-login" className="text-[#B01030] font-extrabold hover:text-[#8e0d27] hover:underline transition-colors ml-1">Masuk di sini</Link>
                 </p>
             </div>
         </div>
