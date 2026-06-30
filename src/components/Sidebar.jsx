@@ -26,12 +26,12 @@ export default function Sidebar() {
   const handleLogout = () => {
     // Tambahkan logika hapus token/sesi di sini jika sudah ada
     // localStorage.removeItem('token'); 
-    navigate('/login');
+    navigate('/admin-login');
   };
 
   // --- KELOMPOK 1: Fitur Utama CRM ---
   const mainMenus = [
-    { id: 'menu-1', name: 'Dashboard', path: '/', icon: <MdDashboard className="mr-4 text-xl" /> },
+    { id: 'menu-1', name: 'Dashboard', path: '/dashboard', icon: <MdDashboard className="mr-4 text-xl" /> },
     { id: 'menu-2', name: 'Orders', path: '/orders', icon: <MdListAlt className="mr-4 text-xl" /> },
     { id: 'menu-3', name: 'Customers', path: '/customers', icon: <MdPeople className="mr-4 text-xl" /> },
     { id: 'menu-5', name: 'Product', path: '/jenismakeup', icon: <MdOutlinePeopleAlt className="mr-4 text-xl" /> },
